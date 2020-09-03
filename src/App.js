@@ -8,9 +8,11 @@ function App() {
       <header className="App-header">
         <h1>Codease</h1>
         <h2>A Platform to learn while coding.</h2>
-        <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <iframe title="just a demo" height="400px" width="100%" src="https://repl.it/@shashankcic/MyProjectsWebsite?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <div>
+          <iframe title="just a demo" height="400px" width="800px" src="https://repl.it/@shashankcic/MyProjectsWebsite?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
         </div>
       </header>
     </div>

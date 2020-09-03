@@ -1,4 +1,5 @@
 import React from 'react';
+import {} from 'tachyons';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,8 +7,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Codease</h1>
-        <h2>A Platform to learn while coding.</h2>
+        <h1 className="f1 grow light-yellow">Codease</h1>
+        <h2 className="f3 dim washed-green">A Platform to learn while coding.</h2>
         <div>
           <img src={logo} className="App-logo" alt="logo" />
         </div>

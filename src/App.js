@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App" style={{position: 'relative'}}>
       <div style={{position: 'absolute', width: "100%"}}>
-        <Particles
+        <Particles width='98vw' height="98vh"
           params={{
             "particles": {
               "number": {
@@ -121,7 +121,7 @@ function App() {
           }}
         />
       </div>
-      <div style={{width: "100%"}}>
+      <>
         <header className="App-header">
           <h1 className="f1 grow light-yellow">Codease</h1>
           <h2 className="f3 dim washed-green">A Platform to learn while coding.</h2>
@@ -129,10 +129,10 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
           <div className="repl-div">
-            <iframe className="repl" title="just a demo" height="400px" src="https://repl.it/@shashankcic/MyProjectsWebsite?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+            <iframe className="repl" title="just a demo" height="400px" src="https://repl.it/@shashankcic/MyProjectsWebsite?lite=true" scrolling="no" frameBorder="no" allowtransparency="true" allowFullScreen={true} sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
           </div>
         </header>
-      </div>
+      </>
     </div>
   );
 }

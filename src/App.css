@@ -30,7 +30,7 @@
   /* width: 90%;
   margin: 30px auto;
   box-shadow: 0px 10px 30px #000; */
-  padding: 10px 20px;
+  padding: 10px 0px;
 }
 
 .App-link {
@@ -56,9 +56,26 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 340px) {
   .repl {
-    width: 90%;
+    width: 270px;
+    margin: 0px auto;
+    padding: 0px;
+  }
+}
+@media only screen and (min-width: 340px) {
+  .repl {
+    width: 310px;
+  }
+}
+@media only screen and (min-width: 400px) {
+  .repl {
+    width: 380px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .repl {
+    width: 450px;
   }
 }
 @media only screen and (min-width: 600px) {

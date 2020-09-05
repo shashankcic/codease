@@ -7,8 +7,9 @@
   pointer-events: none;
 }
 
-.repl {
+.repl-div {
   z-index: 1;
+  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -51,5 +52,32 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .repl {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .repl {
+    width: 576px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .repl {
+    width: 740px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .repl {
+    width: 960px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .repl {
+    width: 1024px;
   }
 }

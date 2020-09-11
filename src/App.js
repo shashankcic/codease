@@ -124,7 +124,7 @@ function App() {
       <>
         <header className="App-header">
           <h1 className="f1 grow light-yellow">Codease</h1>
-          <h2 className="f3 dim washed-green">A Platform to learn while coding.</h2>
+          <h2 className="f3 grow dim washed-green">A Platform to learn while coding.</h2>
           <div>
             <img src={logo} className="App-logo" alt="logo" />
           </div>

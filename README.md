@@ -1,6 +1,6 @@
 # Codease
 
-## A Platform for learning while coding. 
+A Platform for learning while coding. <br /><br /> 
 The site can be seen [here.](https://codease.xyz) 
 
 [![Run on Repl.it](https://repl.it/badge/github/shashankcic/codease)](https://repl.it/github/shashankcic/codease)

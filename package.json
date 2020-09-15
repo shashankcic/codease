@@ -1,6 +1,8 @@
 {
   "name": "codease",
   "version": "0.1.0",
+  "description": "A platform for learning",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -32,5 +34,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "author": "shashankcic",
+  "license": "MIT"
 }

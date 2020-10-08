@@ -173,10 +173,12 @@ ol {
 	color: #fff;
 	cursor: pointer;
 	background: #6246ea;
+  transition: all 0.3s ease-in-out;
 }
 
 .site-btn:hover {
 	color: #fff;
+  transform: scale(1.05);
 }
 
 .site-btn.btn-dark {
@@ -283,10 +285,12 @@ ol {
 	margin-left: 45px;
 	font-weight: 600;
 	padding: 20px 0 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .main-menu ul li a:hover {
 	color: #6246ea;
+  transform: scale(1.05);
 }
 
 .header-btn {
@@ -478,10 +482,16 @@ ol {
 
 .course-item {
 	margin-bottom: 30px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.course-item:hover {
+  transform: scale(1.05);
 }
 
 .course-item .course-thumb {
-	height: 270px;
+	height: 300px;
 }
 
 .course-item .course-thumb .price {
@@ -1488,7 +1498,7 @@ ol {
 		min-width: 173px;
 	}
 	.course-item .course-thumb {
-		height: 220px;
+		height: 20px;
 	}
 	.course-item .course-info .course-text {
 		padding: 45px 15px 25px;

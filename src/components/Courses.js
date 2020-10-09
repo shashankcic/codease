@@ -26,7 +26,7 @@ function Courses() {
               <div className="course-info">
                 <div className="course-text">
                   <h5>C++</h5>
-                  <p>Beginner Level</p>
+                  <p>Beginner</p>
                   <div className="students">50 minutes</div>
                 </div>
                 <div className="course-author">
@@ -164,7 +164,7 @@ function Courses() {
                 </div>
                 <div className="course-author">
                   <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/authors/shashank.jpg`})`}}></div>
-                  <p>Shashank Singh, <span>Developer</span></p>
+                  <p>Shashank, <span>Developer</span></p>
                 </div>
               </div>
             </div>

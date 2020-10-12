@@ -86,12 +86,9 @@ textarea:focus {
 	font-style: italic;
 }
 
-a:hover {
-	color: #6246ea;
-}
-
 a:hover,
 a:focus {
+  color: #6246ea;
 	text-decoration: none;
 	outline: none;
 }
@@ -290,12 +287,16 @@ ol {
 
 .main-menu ul li a:hover {
 	color: #6246ea;
-  transform: scale(1.05);
 }
 
 .header-btn {
 	float: right;
 	margin-right: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.header-btn:hover {
+  transform: scale(1.05);
 }
 
 .nav-switch {

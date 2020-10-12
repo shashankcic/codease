@@ -14,7 +14,7 @@ function Search() {
               <form className="course-search-form">
                 <input type="text" placeholder="Course" />
                 <input type="text" className="last-m" placeholder="Category" />
-                <button className="site-btn">Search Course</button>
+                <button className="site-btn btn-dark">Search Course</button>
               </form>
             </div>
           </div>

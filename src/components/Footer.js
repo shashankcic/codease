@@ -15,7 +15,7 @@ function Footer() {
                 <li>notbhaanum@gmail.com</li>
               </ul>
             </div>
-            <div class="widget-item">
+            <div className="widget-item">
               <h4>C++</h4>
               <ul>
                 <li><a href="/">Loops</a></li>

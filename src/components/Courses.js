@@ -113,7 +113,7 @@ function Courses() {
             aWork="Developer"
           />
         </div>
-        <div class="featured-courses">
+        <div className="featured-courses">
           <Featured
             page="courses"
             cImg="/assets/img/courses/js.png"

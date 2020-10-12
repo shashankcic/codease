@@ -28,20 +28,20 @@ function Contact() {
               </div>
               <div className="phone-number">
                 <span>Direct Line</span>
-                <h2>+53 345 7953 32453</h2>
+                <h2>+91 9876543210</h2>
               </div>
               <ul className="contact-list">
-                <li>1481 Creekside Lane <br />Avila Beach, CA 931</li>
-                <li>+53 345 7953 32453</li>
-                <li>yourmail@gmail.com</li>
+                <li>Cluster Innovation Centre <br />University of Delhi <br /> New Delhi, Delhi <br />110007</li>
+                <li>+91 9876543210</li>
+                <li>notbhaanum@gmail.com</li>
               </ul>
-              <div class="social-links">
-                <a href="/"><i class="fa fa-pinterest"></i></a>
-                <a href="/"><i class="fa fa-facebook"></i></a>
-                <a href="/"><i class="fa fa-twitter"></i></a>
-                <a href="/"><i class="fa fa-dribbble"></i></a>
-                <a href="/"><i class="fa fa-behance"></i></a>
-                <a href="/"><i class="fa fa-linkedin"></i></a>
+              <div className="social-links">
+                <a href="/"><i className="fa fa-pinterest"></i></a>
+                <a href="/"><i className="fa fa-facebook"></i></a>
+                <a href="/"><i className="fa fa-twitter"></i></a>
+                <a href="/"><i className="fa fa-dribbble"></i></a>
+                <a href="/"><i className="fa fa-behance"></i></a>
+                <a href="/"><i className="fa fa-linkedin"></i></a>
               </div>
             </div>
           </div>

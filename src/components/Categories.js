@@ -1,4 +1,5 @@
 import React from 'react';
+import Category from './Category';
 
 function Categories() {
   return(
@@ -10,71 +11,30 @@ function Categories() {
         </div>
         <div className="row">
           {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/1.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>IT Development</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>120 Courses</span>
-              </div>
-            </div>
-          </div>
-          {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/2.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>Web Design</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>70 Courses</span>
-              </div>
-            </div>
-          </div>
-          {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/3.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>Illustration & Drawing</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>55 Courses</span>
-              </div>
-            </div>
-          </div>
-          {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/4.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>Social Media</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>40 Courses</span>
-              </div>
-            </div>
-          </div>
-          {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/5.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>Photoshop</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>220 Courses</span>
-              </div>
-            </div>
-          </div>
-          {/* category */}
-          <div className="col-lg-4 col-md-6">
-            <div className="categorie-item">
-              <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + `/assets/img/categories/6.jpg`})`}}></div>
-              <div className="ci-text">
-                <h5>Cryptocurrencies</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <span>25 Courses</span>
-              </div>
-            </div>
-          </div>
+          <Category 
+            img="/assets/img/categories/js.png"
+            name="JavaScript"
+            desc="Lorem ipsum dolor sit amet, consectetur"
+            count="4"
+          />
+          <Category 
+            img="/assets/img/categories/python.png"
+            name="Python"
+            desc="Lorem ipsum dolor sit amet, consectetur"
+            count="7"
+          />
+          <Category 
+            img="/assets/img/categories/java.png"
+            name="Java"
+            desc="Lorem ipsum dolor sit amet, consectetur"
+            count="8"
+          />
+          <Category 
+            img="/assets/img/categories/c++.png"
+            name="C++"
+            desc="Lorem ipsum dolor sit amet, consectetur"
+            count="12"
+          />
         </div>
       </div>
     </section>

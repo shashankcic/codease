@@ -41,6 +41,7 @@ class Header extends Component {
                       Contact Us
                     </NavLink>
                   </li>
+<<<<<<< HEAD
                   <li>
                     <NavLink className="" activeClassName="text-primary" to="/element">
                       Elements
@@ -56,6 +57,8 @@ class Header extends Component {
                       Blog
                     </NavLink>
                   </li>
+=======
+>>>>>>> 92e631370d20ef295b212e4245200e997c777ba4
                   {/* <li><Link to="/about">About Us</Link></li>
                   <li><Link to="/blog">News</Link></li> */}
                 </ul>

@@ -2,23 +2,22 @@ import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
 import Search from '../components/Search';
-import SingleCourse from '../components/SingleCourse';
-import RelatedCourses from '../components/RelatedCourses';
+import Blog from '../components/Blog';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function CoursesPage() {
+
+function Blogs() {
   return (
     <div>
       <Header />
-      <PageInfo title="Course" bg="/assets/img/page-bg/2.jpg" />
+      <PageInfo title="Blog" bg="/assets/img/page-bg/3.jpg" />
       <Search />
-      <SingleCourse />
-      <RelatedCourses />
+      <Blog />
       <Banner />
-      <Footer /> 
+      <Footer />
     </div>
   );
 }
 
-export default CoursesPage;
+export default Blogs;

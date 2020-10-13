@@ -2,8 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
 import Search from '../components/Search';
-import SingleCourse from '../components/SingleCourse';
-import RelatedCourses from '../components/RelatedCourses';
+import Courses from '../components/Courses';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
@@ -11,10 +10,9 @@ function CoursesPage() {
   return (
     <div>
       <Header />
-      <PageInfo title="Course" bg="/assets/img/page-bg/2.jpg" />
+      <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
       <Search />
-      <SingleCourse />
-      <RelatedCourses />
+      <Courses />
       <Banner />
       <Footer /> 
     </div>

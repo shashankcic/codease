@@ -13,11 +13,12 @@ class SimpleMap extends Component {
   };
  
   render() {
+    const API_KEY = `${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`;
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ 
-            key: `${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`,
+            key: API_KEY,
             language: 'en' 
           }}
           defaultCenter={this.props.center}

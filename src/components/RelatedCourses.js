@@ -27,6 +27,7 @@ function RelatedCourses() {
                 centered: false,
                 arrows: true,
                 infinite: true,
+                itemWidth: 270,
               },
               500: {
                 slidesPerPage: 1,
@@ -36,6 +37,7 @@ function RelatedCourses() {
                 arrows:true,
                 animationSpeed: 2000,
                 infinite: true,
+                itemWidth: 270,
               },
             }}
           >

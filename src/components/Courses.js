@@ -109,7 +109,7 @@ function Courses() {
             cTime="4"
             cTimeUnit="Hours"
             aImg="/assets/img/authors/shashank.jpg"
-            aName="Shashank Singh"
+            aName="Shashank"
             aWork="Developer"
           />
         </div>

@@ -23,7 +23,6 @@ class Header extends Component {
               </div>
             </div>
             <div className="col-lg-7 col-md-7">
-              <a href="/" className="site-btn header-btn">Login</a>
               <nav className="main-menu">
                 <ul>
                   <li>
@@ -45,6 +44,9 @@ class Header extends Component {
                     <NavLink className="" activeClassName="text-primary" to="/about">
                       About Us
                     </NavLink>
+                  </li>
+                  <li>
+                    <a href="/" className="">Login</a>
                   </li>
                   {/* <li>
                     <NavLink className="" activeClassName="text-primary" to="/course">

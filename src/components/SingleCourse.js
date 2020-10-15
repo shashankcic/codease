@@ -1,11 +1,12 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
+// import { useParams } from 'react-router-dom';
 
 function SingleCourse({
-  cName="Python for Beginners", 
-  aName="Kirti Panwar", 
+  cName="C++ for Beginners", 
+  aName="Bhanu Mittal", 
   aWork="Developer", 
-  aImg="/assets/img/authors/kirti.jpg", 
+  aImg="/assets/img/authors/bhanu.jpg", 
   category="Development", 
   cTime=2, 
   cTimeUnit="Hours", 
@@ -17,6 +18,7 @@ function SingleCourse({
   certification="Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum.",
   instructor="Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus."
   }) {
+  // const { name } = useParams();
   return(
     <section className="single-course spad pb-0">
       <div className="container">

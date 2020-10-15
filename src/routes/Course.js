@@ -7,7 +7,7 @@ import RelatedCourses from '../components/RelatedCourses';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function CoursesPage() {
+function Course() {
   return (
     <div>
       <Header />
@@ -21,4 +21,4 @@ function CoursesPage() {
   );
 }
 
-export default CoursesPage;
+export default Course;

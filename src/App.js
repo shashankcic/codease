@@ -29,10 +29,10 @@ function App() {
           <Route path='/courses'>
             <CoursesPage />
           </Route>
-          <Route path='/element'>
+          <Route path='/about'>
             <Elements />
           </Route>
-          <Route path='/course'>
+          <Route path='/course/:name'>
             <Course />
           </Route>
           <Route path='/blog'>

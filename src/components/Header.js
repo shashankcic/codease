@@ -42,11 +42,11 @@ class Header extends Component {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="" activeClassName="text-primary" to="/element">
-                      Elements
+                    <NavLink className="" activeClassName="text-primary" to="/about">
+                      About Us
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink className="" activeClassName="text-primary" to="/course">
                       Course
                     </NavLink>
@@ -56,7 +56,7 @@ class Header extends Component {
                       Blog
                     </NavLink>
                   </li>
-                  {/* <li><Link to="/about">About Us</Link></li>
+                  <li><Link to="/about">About Us</Link></li>
                   <li><Link to="/blog">News</Link></li> */}
                 </ul>
               </nav>

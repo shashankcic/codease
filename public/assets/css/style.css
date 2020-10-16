@@ -346,6 +346,53 @@ ol {
 }
 
 /*------------------
+  404 section
+---------------------*/
+
+.not-found-section {
+  background: #eee;
+  min-height: 100vh;
+}
+
+.not-found-section .site-logo {
+  padding: 30px;
+}
+
+.not-found-section .image-404 {
+  display: flex;
+  width: 80vw;
+  margin: 0px auto;
+  max-width: 400px;
+}
+
+.not-found-section .text-404 {
+  width: 90vw;
+  max-width: 900px;
+  padding-bottom: 20px;
+  margin: 20px auto;
+  margin-bottom: 0px;
+}
+
+.text-404 h4 {
+  text-align: center;
+  width: 80vw;
+  max-width: 500px;
+  margin: 20px auto;
+  padding-top: 20px;
+  margin-bottom: 0px;
+  color: #bb150fc9;
+}
+
+.text-404 p {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 10px;
+  margin-bottom: 0px;
+  color: #272343;
+  text-align: justify;
+}
+
+/*------------------
   Categories section
 ---------------------*/
 

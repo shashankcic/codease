@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,15 +10,21 @@ import Course from './routes/Course';
 import ContactUs from './routes/ContactUs';
 import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
+import NotFound from './routes/NotFound';
+import initialCourses from './data/initialCourses';
+import initialAuthors from './data/initialAuthors';
+import initial404Images from './data/initial404Images';
 
 function App() {
+  const [courses, setCourses] = useState(initialCourses);
+  const [authors, setAuthors] = useState(initialAuthors);
+  const [images404, setImages404] = useState(initial404Images);
   return (
     <Router>
       <div>  
         <div id="preloder">
           <div className="loader"></div>
         </div>
-        {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -37,6 +43,9 @@ function App() {
           </Route>
           <Route path='/blog'>
             <Blogs />
+          </Route>
+          <Route path="*"> 
+            <NotFound props={images404}/>
           </Route>
         </Switch>
       </div>

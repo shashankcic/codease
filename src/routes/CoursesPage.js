@@ -6,13 +6,13 @@ import Courses from '../components/Courses';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function CoursesPage() {
+function CoursesPage({courses, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
       <Search />
-      <Courses />
+      <Courses courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 
     </div>

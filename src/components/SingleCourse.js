@@ -1,24 +1,11 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function SingleCourse({
-  cName="C++ for Beginners", 
-  aName="Bhanu Mittal", 
-  aWork="Developer", 
-  aImg="/assets/img/authors/bhanu.jpg", 
-  category="Development", 
-  cTime=2, 
-  cTimeUnit="Hours", 
-  rCount=2, 
-  stars=4,
-  price=0,
-  cImg="/assets/img/courses/single.jpg",
-  cDesc="Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum.",
-  certification="Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum.",
-  instructor="Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus."
-  }) {
-  // const { name } = useParams();
+function SingleCourse({courses,authors}) {
+  const { name } = useParams();
+  const course = courses.find(x => x.id === name);
+  const author = authors.find(x => x.id === course.aId);
   return(
     <section className="single-course spad pb-0">
       <div className="container">
@@ -26,55 +13,55 @@ function SingleCourse({
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="course-note">Featured Course</div>
-              <h3>{cName}</h3>
+              <h3>{course.name}</h3>
               <div className="course-metas">
                 <div className="course-meta">
                   <div className="course-author">
-                    <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + aImg})`}}></div>
+                    <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>
                     <h6>Teacher</h6>
-                    <p>{aName}, <span>{aWork}</span></p>
+                    <p>{author.name}, <span>{author.work}</span></p>
                   </div>
                 </div>
                 <div className="course-meta">
                   <div className="cm-info">
                     <h6>Category</h6>
-                    <p>{category}</p>
+                    <p>{course.category}</p>
                   </div>
                 </div>
                 <div className="course-meta">
                   <div className="cm-info">
                     <h6>Time Duration</h6>
-                    <p>{cTime} {cTimeUnit}</p>
+                    <p>{course.time} {course.timeUnit}</p>
                   </div>
                 </div>
                 <div className="course-meta">
                   <div className="cm-info">
                     <h6>Reviews</h6>
-                    <p>{rCount} Reviews <span className="rating">
-                      <Rating name="read-only" value={stars} readOnly size="small" />
+                    <p>{course.rCount} Reviews <span className="rating">
+                      <Rating name="read-only" value={course.stars} readOnly size="small" />
                     </span></p>
                   </div>
                 </div>
               </div>
-              <a href="/" className="site-btn price-btn">Price: ${price}</a>
+              <a href="/" className="site-btn price-btn">Price: ${course.price}</a>
               <a href="/" className="site-btn buy-btn">Start This Course</a>
             </div>
           </div>
         </div>
-        <img src={`${process.env.PUBLIC_URL + cImg}`} alt="" className="course-preview" />
+        <img src={`${process.env.PUBLIC_URL + course.img}`} alt="" className="course-preview" />
         <div className="row">
           <div className="col-lg-10 offset-lg-1 course-list">
             <div className="cl-item">
               <h4>Course Description</h4>
-              <p>{cDesc}</p>
+              <p>{course.desc}</p>
             </div>
             <div className="cl-item">
               <h4>Certification</h4>
-              <p>{certification}</p>
+              <p>{course.certification}</p>
             </div>
             <div className="cl-item">
               <h4>The Instructor</h4>
-              <p>{instructor}</p>
+              <p>{author.about}</p>
             </div>
           </div>
         </div>

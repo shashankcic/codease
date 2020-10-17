@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,11 +14,10 @@ import NotFound from './routes/NotFound';
 import initialCourses from './data/initialCourses';
 import initialAuthors from './data/initialAuthors';
 import initial404Images from './data/initial404Images';
+import initialCourseCategories from './data/initialCourseCategories';
+import initialBlogs from './data/initialBlogs';
 
 function App() {
-  const [courses, setCourses] = useState(initialCourses);
-  const [authors, setAuthors] = useState(initialAuthors);
-  const [images404, setImages404] = useState(initial404Images);
   return (
     <Router>
       <div>  
@@ -27,25 +26,25 @@ function App() {
         </div>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home courses={initialCourses} authors={initialAuthors} categories={initialCourseCategories}/>
           </Route>  
           <Route path='/contact'>
             <ContactUs />
           </Route>
           <Route path='/courses'>
-            <CoursesPage />
+            <CoursesPage courses={initialCourses} authors={initialAuthors} />
           </Route>
           <Route path='/about'>
             <Elements />
           </Route>
           <Route path='/course/:name'>
-            <Course />
+            <Course courses={initialCourses} authors={initialAuthors}/>
           </Route>
           <Route path='/blog'>
-            <Blogs />
+            <Blogs blogs={initialBlogs} authors={initialAuthors}/>
           </Route>
           <Route path="*"> 
-            <NotFound props={images404}/>
+            <NotFound images={initial404Images}/>
           </Route>
         </Switch>
       </div>

@@ -7,14 +7,14 @@ import RelatedCourses from '../components/RelatedCourses';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function Course() {
+function Course({courses, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Course" bg="/assets/img/page-bg/2.jpg" />
       <Search />
-      <SingleCourse />
-      <RelatedCourses />
+      <SingleCourse courses={courses} authors={authors}/>
+      <RelatedCourses courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 
     </div>

@@ -5,7 +5,7 @@ import Search from '../components/Search';
 import Element from '../components/Element';
 import Footer from '../components/Footer';
 
-function Course() {
+function Elements() {
   return (
     <div>
       <Header />
@@ -17,4 +17,4 @@ function Course() {
   );
 }
 
-export default Course;
+export default Elements;

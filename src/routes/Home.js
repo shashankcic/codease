@@ -7,14 +7,14 @@ import Courses from '../components/Courses';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function Home() {
+function Home({courses, authors, categories}) {
   return (
     <div>
       <Header />
       <Hero />
-      <Categories />
+      <Categories categories={categories}/>
       <Search />
-      <Courses />
+      <Courses courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 
     </div>

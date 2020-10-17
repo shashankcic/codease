@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Random from '../functions/Random';
 
-function NotFound({props}) {
-  const [images, setImages] = useState(props);
+function NotFound({images}) {
   const [myImage, setMyImage] = useState(Random(images));
-  
+
+  useEffect(() => {
+    setMyImage(Random(images));
+  }, [images]);
+
   const handleChange = () => {
     setMyImage(Random(images));
   };

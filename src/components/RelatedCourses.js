@@ -2,8 +2,15 @@ import React from 'react';
 import Course from './Course';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import { useParams } from 'react-router-dom';
 
-function RelatedCourses() {
+function RelatedCourses({courses, authors}) {
+  const { name } = useParams();
+  const course = courses.find(x => x.id === name);
+  const relatedCourses = courses.filter(x => (x.category === course.category || x.level === 'Beginner') && (x.id !== course.id));
+  
+  const allCourses = relatedCourses.map((course) =>  <Course key={course.id} course={course} authors={authors} lgSize={12} mdSize={12} smSize={12} />);
+  
   return (
     <section className="realated-courses spad">
       <div className="course-warp">
@@ -41,126 +48,7 @@ function RelatedCourses() {
               },
             }}
           >
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="beginner"
-                cImg="/assets/img/courses/c++.png"
-                price="0"
-                cName="C++"
-                cLevel="Beginner"
-                cTime="50"
-                cTimeUnit="Minutes"
-                aImg="/assets/img/authors/bhanu.jpg"
-                aName="Bhanu Mittal"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="intermediate"
-                cImg="/assets/img/courses/c++.png"
-                price="0"
-                cName="C++"
-                cLevel="Intermediate"
-                cTime="3"
-                cTimeUnit="Hours"
-                aImg="/assets/img/authors/devansh.jpg"
-                aName="Devansh Gupta"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="beginner"
-                cImg="/assets/img/courses/java.png"
-                price="0"
-                cName="Java"
-                cLevel="Beginner"
-                cTime="45"
-                cTimeUnit="Minutes"
-                aImg="/assets/img/authors/kirti.jpg"
-                aName="Kirti Panwar"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="advanced"
-                cImg="/assets/img/courses/java.png"
-                price="0"
-                cName="Java"
-                cLevel="Advanced"
-                cTime="6"
-                cTimeUnit="Hours"
-                aImg="/assets/img/authors/aastha.jpg"
-                aName="Aastha Shruti"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="intermediate"
-                cImg="/assets/img/courses/python.png"
-                price="0"
-                cName="Python"
-                cLevel="Intermediate"
-                cTime="2"
-                cTimeUnit="Hours"
-                aImg="/assets/img/authors/kirti.jpg"
-                aName="Kirti Panwar"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="advanced"
-                cImg="/assets/img/courses/python.png"
-                price="0"
-                cName="Python"
-                cLevel="Advanced"
-                cTime="4"
-                cTimeUnit="Hours"
-                aImg="/assets/img/authors/bhanu.jpg"
-                aName="Bhanu Mittal"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="beginner"
-                cImg="/assets/img/courses/js.png"
-                price="0"
-                cName="JavaScript"
-                cLevel="Beginner"
-                cTime="1"
-                cTimeUnit="Hour"
-                aImg="/assets/img/authors/aastha.jpg"
-                aName="Aastha Shruti"
-                aWork="Developer"
-              />
-              <Course 
-                lgSize={12}
-                mdSize={12}
-                smSize={12}
-                cClass="advanced"
-                cImg="/assets/img/courses/js.png"
-                price="0"
-                cName="JavaScript"
-                cLevel="Advanced"
-                cTime="4"
-                cTimeUnit="Hours"
-                aImg="/assets/img/authors/shashank.jpg"
-                aName="Shashank Singh"
-                aWork="Developer"
-              />
+            {allCourses}
           </Carousel>
       </div>
     </section>

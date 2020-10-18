@@ -8,6 +8,7 @@ import Home from './routes/Home';
 import CoursesPage from './routes/CoursesPage';
 import Course from './routes/Course';
 import ContactUs from './routes/ContactUs';
+import AboutUs from './routes/AboutUs';
 import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
 import NotFound from './routes/NotFound';
@@ -35,6 +36,9 @@ function App() {
             <CoursesPage courses={initialCourses} authors={initialAuthors} />
           </Route>
           <Route path='/about'>
+            <AboutUs />
+          </Route>
+          <Route path='/element'>
             <Elements />
           </Route>
           <Route path='/course/:name'>

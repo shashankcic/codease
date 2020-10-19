@@ -6,12 +6,12 @@ import Contact from '../components/Contact';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function ContactUs() {
+function ContactUs({courses, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Contact Us" bg="/assets/img/page-bg/4.jpg" />
-      <Search />
+      <Search courses={courses} authors={authors} />
       <Contact />
       <Banner />
       <Footer />

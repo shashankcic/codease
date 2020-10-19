@@ -5,12 +5,12 @@ import Search from '../components/Search';
 import Element from '../components/Element';
 import Footer from '../components/Footer';
 
-function Elements() {
+function Elements({courses, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Elements" bg="/assets/img/page-bg/5.jpg" />
-      <Search />
+      <Search courses={courses} authors={authors} />
       <Element />
       <Footer /> 
     </div>

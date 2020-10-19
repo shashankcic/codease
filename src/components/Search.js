@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import SearchList from './SearchList';
+import Scroll from './Scroll';
 
-function Search() {
+function Search({courses, authors}) {
   let location = useLocation();
   let class1="", class2="";
   if (location.pathname === "/") {
@@ -10,6 +12,28 @@ function Search() {
     class1="ss-other-page";
     class2="col-lg-10 offset-lg-1";
   }
+  const [searchField, setSearchField] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+  const filteredCourses = courses.filter(course =>{
+    return (course.name.toLowerCase().includes(searchField.toLowerCase()) || course.level.toLowerCase().includes(searchField.toLowerCase()));
+  });
+
+  const handleChange = e => {
+		setSearchField(e.target.value);
+    setShowSearch(true);
+	};
+
+  function searchList() 
+  {
+    if(showSearch){
+      return (
+        <Scroll>
+          <SearchList filteredCourses={filteredCourses} authors={authors}/>
+				</Scroll>
+      )
+    }
+  }
+
   return (
     <section className={`search-section ${class1}`}>
       <div className="container">
@@ -20,14 +44,13 @@ function Search() {
           <div className="row">
             <div className={class2}>
               {/* search form */}
-              <form className="course-search-form">
-                <input type="text" placeholder="Course" />
-                <input type="text" className="last-m" placeholder="Category" />
-                <button className="site-btn btn-dark">Search Course</button>
+              <form className="flex justify-center items-center course-search-form">
+                <input type="text" placeholder="Course" className="w-100" onChange = {handleChange}/>
               </form>
             </div>
           </div>
         </div>
+        {searchList()}
       </div>
     </section>
   );

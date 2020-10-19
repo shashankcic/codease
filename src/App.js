@@ -12,6 +12,7 @@ import AboutUs from './routes/AboutUs';
 import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
 import NotFound from './routes/NotFound';
+import SearchPage from './routes/SearchPage';
 import initialCourses from './data/initialCourses';
 import initialAuthors from './data/initialAuthors';
 import initial404Images from './data/initial404Images';
@@ -30,7 +31,7 @@ function App() {
             <Home courses={initialCourses} authors={initialAuthors} categories={initialCourseCategories}/>
           </Route>  
           <Route path='/contact'>
-            <ContactUs />
+            <ContactUs courses={initialCourses} authors={initialAuthors} />
           </Route>
           <Route path='/courses'>
             <CoursesPage courses={initialCourses} authors={initialAuthors} />
@@ -39,13 +40,16 @@ function App() {
             <AboutUs />
           </Route>
           <Route path='/element'>
-            <Elements />
+            <Elements courses={initialCourses} authors={initialAuthors} />
           </Route>
           <Route path='/course/:name'>
             <Course courses={initialCourses} authors={initialAuthors}/>
           </Route>
+          <Route path='/search'>
+            <SearchPage courses={initialCourses} authors={initialAuthors}/>
+          </Route>
           <Route path='/blog'>
-            <Blogs blogs={initialBlogs} authors={initialAuthors}/>
+            <Blogs courses={initialCourses} blogs={initialBlogs} authors={initialAuthors}/>
           </Route>
           <Route path="*"> 
             <NotFound images={initial404Images}/>

@@ -12,7 +12,7 @@ function Course({
   return (
     <div className={`mix col-lg-${lgSize} col-md-${mdSize} col-sm-${smSize} ${course.cClass}`}>
       <Link to={`/course/${course.id}`}>
-        <div className="course-item">
+        <div className="br3 ma2 grow shadow-5 bw2 course-item">
           <div className="course-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + course.img})`}}>
             <div className="price">Price: ${course.price}</div>
           </div>

@@ -13,7 +13,7 @@ function Home({courses, authors, categories}) {
       <Header />
       <Hero />
       <Categories categories={categories}/>
-      <Search />
+      <Search courses={courses} authors={authors} />
       <Courses courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 

@@ -12,7 +12,7 @@ function Course({courses, authors}) {
     <div>
       <Header />
       <PageInfo title="Course" bg="/assets/img/page-bg/2.jpg" />
-      <Search />
+      <Search courses={courses} authors={authors} />
       <SingleCourse courses={courses} authors={authors}/>
       <RelatedCourses courses={courses} authors={authors}/>
       <Banner />

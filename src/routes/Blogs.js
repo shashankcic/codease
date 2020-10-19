@@ -6,12 +6,12 @@ import Blog from '../components/Blog';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
-function Blogs({blogs, authors}) {
+function Blogs({courses, blogs, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Blog" bg="/assets/img/page-bg/3.jpg" />
-      <Search />
+      <Search courses={courses} authors={authors} />
       <Blog blogs={blogs} authors={authors}/>
       <Banner />
       <Footer />

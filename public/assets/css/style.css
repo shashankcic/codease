@@ -465,13 +465,11 @@ ol {
 .course-search-form input[type=text],
 .course-search-form input[type=email] {
 	height: 56px;
-	width: 36.6%;
 	padding: 0 30px;
 	margin-right: 18px;
 	float: left;
 	border: none;
 	font-size: 14px;
-	background: #edf4f6;
 }
 
 .course-search-form input[type=text]:focus,
@@ -480,8 +478,9 @@ ol {
 }
 
 .course-search-form .site-btn {
-	min-width: 198px;
+  min-width: 150px;
 	padding: 16px 10px;
+  float: right;
 }
 
 .search-section.ss-other-page {
@@ -1596,10 +1595,10 @@ ol {
 	}
 	.course-search-form input[type=text],
 	.course-search-form input[type=email] {
-		width: 34.6%;
+
 	}
 	.course-search-form .site-btn {
-		min-width: 173px;
+		min-width: 150px;
 	}
 	.course-item .course-thumb {
 		height: 250px;
@@ -1648,7 +1647,6 @@ ol {
 	}
 	.course-search-form input[type=text],
 	.course-search-form input[type=email] {
-		width: 48.1%;
 		margin-bottom: 20px;
 	}
 	.course-search-form input[type=text].last-m,
@@ -1660,7 +1658,6 @@ ol {
 	}
 	.search-section.ss-other-page .course-search-form input[type=text],
 	.search-section.ss-other-page .course-search-form input[type=email] {
-		width: 48.5%;
 	}
 	.course-item .course-thumb {
 		height: 215px;
@@ -1757,7 +1754,7 @@ ol {
 	}
 	.course-search-form input[type=text],
 	.course-search-form input[type=email] {
-		width: 100%;
+		/* width: 100%; */
 		margin-bottom: 20px;
 		margin-right: 0;
 	}
@@ -1811,8 +1808,8 @@ ol {
 		margin-right: 0;
 	}
 	.course-search-form .site-btn {
-		min-width: auto;
-		padding: 16px 20px;
+		min-width: 65px;
+		padding: 16px auto;
 	}
 	.signup-warp {
 		padding: 0;

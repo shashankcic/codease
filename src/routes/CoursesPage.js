@@ -11,7 +11,7 @@ function CoursesPage({courses, authors}) {
     <div>
       <Header />
       <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
-      <Search />
+      <Search courses={courses} authors={authors} />
       <Courses courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 

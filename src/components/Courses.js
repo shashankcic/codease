@@ -73,7 +73,7 @@ function Courses({courses, authors}){
       <div className="container">        
         <Featured page="home"/>
       </div>
-      <div className={classes.root + "course-warp"} style={{width: "100%", margin: "0px auto"}}>
+      <div className={classes.root + "course-warp"} style={{width: "100%", margin: "20px auto"}}>
         <Tabs
           value={tabValue}
           indicatorColor="primary"

@@ -86,7 +86,7 @@ function Courses({courses, authors}){
           <Tab label="All"  {...a11yProps(0)}/>
           <Tab label="Beginner"  {...a11yProps(1)}/>
           <Tab label="Intermediate"  {...a11yProps(2)}/>
-          <Tab label="Intermediate"  {...a11yProps(3)}/>
+          <Tab label="Advanced"  {...a11yProps(3)}/>
         </Tabs>
         <TabPanel value={tabValue} index={0}>
           <div className="row course-items-area">

@@ -31,7 +31,7 @@ function App() {
             <Home courses={initialCourses} authors={initialAuthors} categories={initialCourseCategories}/>
           </Route>  
           <Route path='/contact'>
-            <ContactUs courses={initialCourses} authors={initialAuthors} />
+            <ContactUs />
           </Route>
           <Route path='/courses'>
             <CoursesPage courses={initialCourses} authors={initialAuthors} />

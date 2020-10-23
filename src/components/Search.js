@@ -25,12 +25,15 @@ function Search({courses, authors}) {
 
   function searchList() 
   {
-    if(showSearch){
-      return (
+    if(showSearch) {
+      return (filteredCourses.length > 0) ? 
+      (
         <Scroll>
           <SearchList filteredCourses={filteredCourses} authors={authors}/>
-				</Scroll>
-      )
+        </Scroll>
+      ) : (
+        <h2 className="tc ma4">No matching courses found.</h2>
+      );
     }
   }
 

@@ -13,6 +13,10 @@ import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
 import NotFound from './routes/NotFound';
 import SearchPage from './routes/SearchPage';
+import AddItems from './routes/AddItems';
+import AddImages from './components/AddImages';
+import EditImages from './components/EditImages';
+import AllImages from './components/AllImages';
 import initialCourses from './data/initialCourses';
 import initialAuthors from './data/initialAuthors';
 import initial404Images from './data/initial404Images';
@@ -50,6 +54,18 @@ function App() {
           </Route>
           <Route path='/blog'>
             <Blogs courses={initialCourses} blogs={initialBlogs} authors={initialAuthors}/>
+          </Route>
+          <Route path='/images/add'>
+            <AddImages />
+          </Route>
+          <Route path='/images/all'>
+            <AllImages />
+          </Route>
+          <Route path='/images/edit/:id'>
+            <EditImages />
+          </Route>
+          <Route path='/images'>
+            <AddItems />
           </Route>
           <Route path="*"> 
             <NotFound images={initial404Images}/>

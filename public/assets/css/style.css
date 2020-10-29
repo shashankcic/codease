@@ -596,13 +596,13 @@ ol {
 }
 
 .course-item .course-thumb .price {
-	font-size: 14px;
-	color: #fff;
-	font-weight: 600;
-	background: #6246ea;
 	display: inline-block;
-	padding: 13px 19px;
-	margin: 14px;
+	background: #6246ea;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 4px 15px;
+	margin-bottom: 20px;
 }
 
 .course-item .course-info {
@@ -1011,6 +1011,7 @@ ol {
 	font-weight: 500;
 	padding: 4px 15px;
 	margin-bottom: 20px;
+	margin-right: 10px;
 }
 
 .course-metas {

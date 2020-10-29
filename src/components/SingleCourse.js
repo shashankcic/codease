@@ -13,6 +13,7 @@ function SingleCourse({courses,authors}) {
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="course-note">Featured Course</div>
+              <div className="course-note">Price: ${course.price}</div>
               <h3>{course.name}</h3>
               <div className="course-metas">
                 <div className="course-meta">
@@ -43,7 +44,6 @@ function SingleCourse({courses,authors}) {
                   </div>
                 </div>
               </div>
-              <a href="/" className="site-btn price-btn">Price: ${course.price}</a>
               <a href="/" className="site-btn buy-btn">Start This Course</a>
             </div>
           </div>

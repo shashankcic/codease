@@ -4,6 +4,7 @@ import PageInfo from '../components/PageInfo';
 import Search from '../components/Search';
 import SingleCourse from '../components/SingleCourse';
 import RelatedCourses from '../components/RelatedCourses';
+import RelatedAuthors from '../components/RelatedAuthors';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
@@ -15,6 +16,7 @@ function Course({courses, authors}) {
       <Search courses={courses} authors={authors} />
       <SingleCourse courses={courses} authors={authors}/>
       <RelatedCourses courses={courses} authors={authors}/>
+      <RelatedAuthors courses={courses} authors={authors}/>
       <Banner />
       <Footer /> 
     </div>

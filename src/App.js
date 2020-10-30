@@ -13,10 +13,18 @@ import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
 import NotFound from './routes/NotFound';
 import SearchPage from './routes/SearchPage';
-import AddItems from './routes/AddItems';
 import AddImages from './components/AddImages';
 import EditImages from './components/EditImages';
 import AllImages from './components/AllImages';
+import AddAuthors from './components/AddAuthors';
+import EditAuthors from './components/EditAuthors';
+import AllAuthors from './components/AllAuthors';
+import AddLearningPaths from './components/AddLearningPaths';
+import EditLearningPaths from './components/EditLearningPaths';
+import AllLearningPaths from './components/AllLearningPaths';
+import AddCategories from './components/AddCategories';
+import EditCategories from './components/EditCategories';
+import AllCategories from './components/AllCategories';
 import initialCourses from './data/initialCourses';
 import initialAuthors from './data/initialAuthors';
 import initial404Images from './data/initial404Images';
@@ -55,17 +63,41 @@ function App() {
           <Route path='/blog'>
             <Blogs courses={initialCourses} blogs={initialBlogs} authors={initialAuthors}/>
           </Route>
+          <Route exact path='/images'>
+            <AllImages />
+          </Route>
           <Route path='/images/add'>
             <AddImages />
-          </Route>
-          <Route path='/images/all'>
-            <AllImages />
           </Route>
           <Route path='/images/edit/:id'>
             <EditImages />
           </Route>
-          <Route path='/images'>
-            <AddItems />
+          <Route exact path='/authors'>
+            <AllAuthors />
+          </Route>
+          <Route path='/authors/add'>
+            <AddAuthors />
+          </Route>
+          <Route path='/authors/edit/:id'>
+            <EditAuthors />
+          </Route>
+          <Route exact path='/learningPaths'>
+            <AllLearningPaths />
+          </Route>
+          <Route path='/learningPaths/add'>
+            <AddLearningPaths />
+          </Route>
+          <Route path='/learningPaths/edit/:id'>
+            <EditLearningPaths />
+          </Route>
+          <Route exact path='/categories'>
+            <AllCategories />
+          </Route>
+          <Route path='/categories/add'>
+            <AddCategories />
+          </Route>
+          <Route path='/categories/edit/:id'>
+            <EditCategories />
           </Route>
           <Route path="*"> 
             <NotFound images={initial404Images}/>

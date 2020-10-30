@@ -5,50 +5,50 @@ import api from '../api';
 
 import 'react-table-6/react-table.css';
 
-function UpdateImage(props) {
+function UpdateLearningPath(props) {
 
-	function updateImage(e) {
+	function updateLearningPath(e) {
 		e.preventDefault();
 
-		window.location.href = `/images/edit/${props.id}`;
+		window.location.href = `/learningPaths/edit/${props.id}`;
 	}
 	return(
-		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateImage}>Update</div>
+		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateLearningPath}>Update</div>
 	);
 }
 
-function DeleteImage(props) {
+function DeleteLearningPath(props) {
 
-	function deleteImage(e) {
+	function deleteLearningPath(e) {
 		e.preventDefault();
 		if (
     	window.confirm(
-        `Do you want to delete this image permanently?`,
+        `Do you want to delete this learning path permanently?`,
       )
     ) {
-      api.deleteImageById(props.id)
+      api.deleteLearningPathById(props.id)
       window.location.reload()
     }
 	}
 	return (
-		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteImage}>Delete</div>
+		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteLearningPath}>Delete</div>
 	);
 }
 
-export default function AllImages() {
-	const [images, setImages] = useState([]);
+export default function AllLearningPaths() {
+	const [learningPaths, setLearningPaths] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const fetchImages = async () => {
+		const fetchLearningPaths = async () => {
 			setIsLoading(true);
 
-			await api.getAllImages().then(images => {
-				setImages(images.data.data);
+			await api.getAllLearningPaths().then(learningPaths => {
+				setLearningPaths(learningPaths.data.data);
 				setIsLoading(false);
 			});
 		}
-		fetchImages();
+		fetchLearningPaths();
 	},[])
 
 		const columnsTable = [
@@ -58,23 +58,18 @@ export default function AllImages() {
 			fiterable: true,
 		},
 		{
-			Header: 'Image Name',
-			accessor: 'imgName',
+			Header: 'Learning Path Image',
+			accessor: 'img',
 			fiterable: true,
 		},
 		{
-			Header: 'Image Path',
-			accessor: 'imgPath',
+			Header: 'Learning Path Name',
+			accessor: 'name',
 			fiterable: true,
 		},
 		{
-			Header: 'Error Title',
-			accessor: 'errTitle',
-			fiterable: true,
-		},
-		{
-			Header: 'Error Text',
-			accessor: 'errText',
+			Header: 'Learning Path Description',
+			accessor: 'description',
 			fiterable: true,
 		},
 		{
@@ -83,7 +78,7 @@ export default function AllImages() {
 			Cell: function(props) {
 				return (
 					<span>
-						<DeleteImage id={props.original._id} />
+						<DeleteLearningPath id={props.original._id} />
 					</span>
 				);
 			},
@@ -94,7 +89,7 @@ export default function AllImages() {
 			Cell: function(props) {
 				return (
 					<span>
-						<UpdateImage id={props.original._id} />
+						<UpdateLearningPath id={props.original._id} />
 					</span>
 				);
 			},
@@ -102,7 +97,7 @@ export default function AllImages() {
 	];
 
 	let showTable = true;
-	if (!images.length) {
+	if (!learningPaths.length) {
 		showTable = false;
 	}
 
@@ -110,11 +105,11 @@ export default function AllImages() {
 		<div >
 			<AddItems />
 			<div className="container">
-	      <h3>Images List</h3>
+	      <h3>Learning Path List</h3>
 	      {
 					showTable && (
 						<ReactTable
-							data={images}
+							data={learningPaths}
 							columns={columnsTable}
 							loading={isLoading}
 							defaultPageSize={10}

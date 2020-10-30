@@ -5,50 +5,50 @@ import api from '../api';
 
 import 'react-table-6/react-table.css';
 
-function UpdateImage(props) {
+function UpdateAuthor(props) {
 
-	function updateImage(e) {
+	function updateAuthor(e) {
 		e.preventDefault();
 
-		window.location.href = `/images/edit/${props.id}`;
+		window.location.href = `/authors/edit/${props.id}`;
 	}
 	return(
-		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateImage}>Update</div>
+		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateAuthor}>Update</div>
 	);
 }
 
-function DeleteImage(props) {
+function DeleteAuthor(props) {
 
-	function deleteImage(e) {
+	function deleteAuthor(e) {
 		e.preventDefault();
 		if (
     	window.confirm(
-        `Do you want to delete this image permanently?`,
+        `Do you want to delete this author permanently?`,
       )
     ) {
-      api.deleteImageById(props.id)
+      api.deleteAuthorById(props.id)
       window.location.reload()
     }
 	}
 	return (
-		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteImage}>Delete</div>
+		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteAuthor}>Delete</div>
 	);
 }
 
-export default function AllImages() {
-	const [images, setImages] = useState([]);
+export default function AllAuthors() {
+	const [authors, setAuthors] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const fetchImages = async () => {
+		const fetchAuthors = async () => {
 			setIsLoading(true);
 
-			await api.getAllImages().then(images => {
-				setImages(images.data.data);
+			await api.getAllAuthors().then(authors => {
+				setAuthors(authors.data.data);
 				setIsLoading(false);
 			});
 		}
-		fetchImages();
+		fetchAuthors();
 	},[])
 
 		const columnsTable = [
@@ -58,23 +58,23 @@ export default function AllImages() {
 			fiterable: true,
 		},
 		{
-			Header: 'Image Name',
-			accessor: 'imgName',
+			Header: 'Author Image',
+			accessor: 'img',
 			fiterable: true,
 		},
 		{
-			Header: 'Image Path',
-			accessor: 'imgPath',
+			Header: 'Author Name',
+			accessor: 'name',
 			fiterable: true,
 		},
 		{
-			Header: 'Error Title',
-			accessor: 'errTitle',
+			Header: 'Author Profession',
+			accessor: 'work',
 			fiterable: true,
 		},
 		{
-			Header: 'Error Text',
-			accessor: 'errText',
+			Header: 'About Author',
+			accessor: 'about',
 			fiterable: true,
 		},
 		{
@@ -83,7 +83,7 @@ export default function AllImages() {
 			Cell: function(props) {
 				return (
 					<span>
-						<DeleteImage id={props.original._id} />
+						<DeleteAuthor id={props.original._id} />
 					</span>
 				);
 			},
@@ -94,7 +94,7 @@ export default function AllImages() {
 			Cell: function(props) {
 				return (
 					<span>
-						<UpdateImage id={props.original._id} />
+						<UpdateAuthor id={props.original._id} />
 					</span>
 				);
 			},
@@ -102,7 +102,7 @@ export default function AllImages() {
 	];
 
 	let showTable = true;
-	if (!images.length) {
+	if (!authors.length) {
 		showTable = false;
 	}
 
@@ -110,11 +110,11 @@ export default function AllImages() {
 		<div >
 			<AddItems />
 			<div className="container">
-	      <h3>Images List</h3>
+	      <h3>Author List</h3>
 	      {
 					showTable && (
 						<ReactTable
-							data={images}
+							data={authors}
 							columns={columnsTable}
 							loading={isLoading}
 							defaultPageSize={10}

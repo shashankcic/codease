@@ -10,7 +10,7 @@ export default function AddCategories() {
   const [learningPathName, setLearningPathName] = useState('');
   const [learningPaths, setLearningPaths] = useState([]);
   const history = useHistory();
-  const myRef = useRef('userInput');
+  const learningPathRef = useRef('learningPathInput');
   const [defaultLPName, setDefaultLPName] = useState(''); 
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function AddCategories() {
         <div className="form-group">
           <label>Category Learning Path: </label>
           <select
-            ref={myRef}
+            ref={learningPathRef}
             required
             className="form-control"
             value={learningPathName}

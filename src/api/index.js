@@ -34,6 +34,12 @@ export const updateBlogById = (id, payload) => api.put(`/blogs/${id}`, payload);
 export const deleteBlogById = id => api.delete(`/blogs/${id}`);
 export const getBlogById = id => api.get(`/blogs/${id}`);
 
+export const insertModule = payload => api.post(`/modules`, payload);
+export const getAllModules = () => api.get(`/modules`);
+export const updateModuleById = (id, payload) => api.put(`/modules/${id}`, payload);
+export const deleteModuleById = id => api.delete(`/modules/${id}`);
+export const getModuleById = id => api.get(`/modules/${id}`);
+
 const apis = {
 	insertImage,
 	getAllImages,
@@ -64,6 +70,12 @@ const apis = {
 	getBlogById,
 	deleteBlogById,
 	updateBlogById,
+
+	insertModule,
+	getAllModules,
+	getModuleById,
+	deleteModuleById,
+	updateModuleById,
 }
 
 export default apis;

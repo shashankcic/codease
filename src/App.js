@@ -25,6 +25,9 @@ import AllLearningPaths from './components/AllLearningPaths';
 import AddCategories from './components/AddCategories';
 import EditCategories from './components/EditCategories';
 import AllCategories from './components/AllCategories';
+import AddModules from './components/AddModules';
+import EditModules from './components/EditModules';
+import AllModules from './components/AllModules';
 import initialCourses from './data/initialCourses';
 import initialAuthors from './data/initialAuthors';
 import initial404Images from './data/initial404Images';
@@ -98,6 +101,15 @@ function App() {
           </Route>
           <Route path='/categories/edit/:id'>
             <EditCategories />
+          </Route>
+          <Route exact path='/modules'>
+            <AllModules />
+          </Route>
+          <Route path='/modules/add'>
+            <AddModules />
+          </Route>
+          <Route path='/modules/edit/:id'>
+            <EditModules />
           </Route>
           <Route path="*"> 
             <NotFound images={initial404Images}/>

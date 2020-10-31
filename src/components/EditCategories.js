@@ -11,7 +11,7 @@ export default function EditCategories() {
   const [learningPathName, setLearningPathName] = useState('');
   const [learningPaths, setLearningPaths] = useState([]);
 	const history = useHistory();
-  const myRef = useRef('userInput');
+  const learningPathRef = useRef('learningPathInput');
 
 	async function onChangeImg(e) {
 		setImg(e.target.value);
@@ -45,7 +45,7 @@ export default function EditCategories() {
 			setImg(category.data.data.img);
 			setName(category.data.data.name);
 			setDescription(category.data.data.description);
-			setLearningPathName(category.data.data.learningPathName)
+			setLearningPathName(category.data.data.learningPathName);
 		};
 
     const fetchLearningPaths = async () => {
@@ -69,7 +69,7 @@ export default function EditCategories() {
         <div className="form-group">
           <label>Category Learning Path: </label>
           <select
-            ref={myRef}
+            ref={learningPathRef}
             required
             className="form-control"
             value={learningPathName}

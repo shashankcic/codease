@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
 import AddItems from './AddItems';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-export default function EditCategories() {
+export default function EditModules() {
 	const { id } = useParams();
   const [img, setImg] = useState('/assets/img/courses/');
   const [name, setName] = useState('');
@@ -21,12 +24,19 @@ export default function EditCategories() {
   const [ratingCount, setRatingCount] = useState(0);
   const [stars, setStars] = useState(0);
   const [heading, setHeading] = useState('');
-  const [body, setBody] = useState('');
   const [field, setField] = useState('');
   const [ideLink, setIdeLink] = useState('');
 	
   const history = useHistory();
   
+  const editorContent = '';
+
+  const [editorState, setEditorState] = useState({ editorState: editorContent });
+
+  const handleEditorChange = (editorState) => {
+    setEditorState({ editorState });
+  };
+
   const learningPathRef = useRef('learningPathInput');
   const categoryRef = useRef('categoryInput');
   const authorRef = useRef('authorInput');
@@ -75,10 +85,6 @@ export default function EditCategories() {
     setHeading(e.target.value);
   }
 
-  async function onChangeBody(e) {
-    setBody(e.target.value);
-  }
-
   async function onChangeField(e) {
     setField(e.target.value);
   }
@@ -88,9 +94,26 @@ export default function EditCategories() {
   }
 
 	async function onSubmit(e) {
-		const payload = { img, name, description, learningPathName, categoryName, authorName, price, priceCurrency, duration, durationUnit, ratingCount, stars, heading, body, field, ideLink };
+		const payload = { 
+      img, 
+      name, 
+      description, 
+      learningPathName, 
+      categoryName, 
+      authorName, 
+      price, 
+      priceCurrency, 
+      duration, 
+      durationUnit, 
+      ratingCount, 
+      stars, 
+      heading, 
+      body: JSON.stringify(convertToRaw(editorState.editorState.getCurrentContent())), 
+      field, 
+      ideLink,
+    };
 
-		await api.updateCategoryById(id, payload).then(res => {
+		await api.updateModuleById(id, payload).then(res => {
 			window.alert(`Module updated successfully!`);
 			history.push('/modules');
 		});
@@ -98,7 +121,7 @@ export default function EditCategories() {
 
 	useEffect(() => {
 		const update = async () => {
-			const module = await api.getCategoryById(id);
+			const module = await api.getModuleById(id);
 
 			setImg(module.data.data.img);
 			setName(module.data.data.name);
@@ -113,7 +136,7 @@ export default function EditCategories() {
       setRatingCount(module.data.data.ratingCount);
       setStars(module.data.data.stars);
       setHeading(module.data.data.heading);
-      setBody(module.data.data.body);
+      setEditorState({ editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(module.data.data.body))) });
       setField(module.data.data.field);
       setIdeLink(module.data.data.ideLink);
 		};
@@ -147,13 +170,15 @@ export default function EditCategories() {
     fetchCategories();
     fetchAuthors();
 
+
+
 	}, [id]);
 
 	return (
 		<div>
       <AddItems />
       <div style={{marginTop: 10}} className="container">
-        <h3>Update Category</h3>
+        <h3>Update Module</h3>
         <div className="form-group">
           <label>Module Learning Path: </label>
           <select
@@ -309,12 +334,11 @@ export default function EditCategories() {
         </div>
         <div className="form-group">
           <label>Module Body: </label>
-          <input 
-            type="text"
-            className="form-control"
-            required
-            value={body}
-            onChange={onChangeBody}
+          <Editor
+            editorState={editorState.editorState}
+            onEditorStateChange={handleEditorChange}
+            wrapperClassName='demo-wrapper'
+            editorClassName='demo-editor'
           />
         </div>
         <div className="form-group">
@@ -341,7 +365,7 @@ export default function EditCategories() {
         <br />
 
         <div className="form-group">
-          <button className="btn btn-primary" onClick={onSubmit}>Add Module</button>
+          <button className="btn btn-primary" onClick={onSubmit}>Update Module</button>
           <button className="btn btn-danger" onClick={() => history.push('/modules')}>Cancel</button>
         </div>
       </div>

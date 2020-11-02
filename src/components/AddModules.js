@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
 import AddItems from './AddItems';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-export default function AddModules() {
+export default function AddModules(props) {
   const [img, setImg] = useState('/assets/img/courses/');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -20,53 +23,63 @@ export default function AddModules() {
   const ratingCount = 0;
   const stars = 0;
   const [heading, setHeading] = useState('');
-  const [body, setBody] = useState('');
   const [field, setField] = useState('');
   const [ideLink, setIdeLink] = useState('');
 
   const history = useHistory();
-  
+
+  const editorContent = EditorState.createEmpty();
+
+  const [editorState, setEditorState] = useState({ editorState: editorContent });
+
+  const handleEditorChange = (editorState) => {
+    setEditorState({ editorState });
+  };
+
   const learningPathRef = useRef('learningPathInput');
   const categoryRef = useRef('categoryInput');
   const authorRef = useRef('authorInput');
-  const [defaultLPName, setDefaultLPName] = useState('');
-  const [defaultCategoryName, setDefaultCategoryName] = useState('');
-  const [defaultAuthorName, setDefaultAuthorName] = useState(''); 
+  // const [defaultLPName, setDefaultLPName] = useState('');
+  // const [defaultCategoryName, setDefaultCategoryName] = useState('');
+  // const [defaultAuthorName, setDefaultAuthorName] = useState(''); 
 
   useEffect(() => {
     const fetchLearningPaths = async () => {
       await api.getAllLearningPaths().then(response => {
         if (response.data.data.length > 0) {
           setLearningPaths(response.data.data.map(learningPath=> learningPath.name));
-          setDefaultLPName(response.data.data[0].name);
+          // setDefaultLPName(response.data.data[0].name);
           setLearningPathName(response.data.data[0].name);
         }
       });
     }
     fetchLearningPaths();
 
-    const fetchCategories = async () => {
-      await api.getAllCategories().then(response => {
-        if (response.data.data.length > 0) {
-          setCategories(response.data.data.map(category=> category.name));
-          setDefaultCategoryName(response.data.data[0].name);
-          setCategoryName(response.data.data[0].name);
-        }
-      });
-    }
-    fetchCategories();
-
     const fetchAuthors = async () => {
       await api.getAllAuthors().then(response => {
         if (response.data.data.length > 0) {
           setAuthors(response.data.data.map(author=> author.name));
-          setDefaultAuthorName(response.data.data[0].name);
+          // setDefaultAuthorName(response.data.data[0].name);
           setAuthorName(response.data.data[0].name);
         }
       });
     }
     fetchAuthors();
-  },[])
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      await api.getAllCategories().then(response => {
+        if (response.data.data.length > 0) {
+          let cats = response.data.data.filter(category=> category.learningPathName === learningPathName);
+          setCategories(cats.map(category => category.name));
+          // setDefaultCategoryName(response.data.data[0].name);
+          setCategoryName(response.data.data[0].name);
+        }
+      });
+    }
+    fetchCategories();    
+  }, [learningPathName]);
 
   async function onChangeImg(e) {
     setImg(e.target.value);
@@ -112,10 +125,6 @@ export default function AddModules() {
     setHeading(e.target.value);
   }
 
-  async function onChangeBody(e) {
-    setBody(e.target.value);
-  }
-
   async function onChangeField(e) {
     setField(e.target.value);
   }
@@ -125,26 +134,28 @@ export default function AddModules() {
   }
 
   async function onSubmit(e) {
-    const payload = { img, name, description, learningPathName, categoryName, authorName, price, priceCurrency, duration, durationUnit, ratingCount, stars, heading, body, field, ideLink };
-
+    const payload = { 
+      img, 
+      name, 
+      description, 
+      learningPathName, 
+      categoryName, 
+      authorName, 
+      price, 
+      priceCurrency, 
+      duration, 
+      durationUnit, 
+      ratingCount, 
+      stars, 
+      heading, 
+      body: JSON.stringify(convertToRaw(editorState.editorState.getCurrentContent())), 
+      field, 
+      ideLink,
+    };
     await api.insertModule(payload).then(res => {
       window.alert(`Module added successfully!`);
-      setImg('/assets/img/courses/');
-      setName('');
-      setDescription('');
-      setLearningPathName(defaultLPName);
-      setCategoryName(defaultCategoryName);
-      setAuthorName(defaultAuthorName);
-      setPrice(0);
-      setPriceCurrency('');
-      setDuration(0);
-      setDurationUnit('');
-      setHeading('');
-      setBody('');
-      setField('');
-      setIdeLink('');
-    })
-    .catch(err => console.log('Error in Submitting', err));
+      history.push('/modules');
+    });
   }
 
   return (
@@ -307,12 +318,11 @@ export default function AddModules() {
         </div>
         <div className="form-group">
           <label>Module Body: </label>
-          <input 
-            type="text"
-            className="form-control"
-            required
-            value={body}
-            onChange={onChangeBody}
+          <Editor
+            editorState={editorState.editorState}
+            onEditorStateChange={handleEditorChange}
+            wrapperClassName='demo-wrapper'
+            editorClassName='demo-editor'
           />
         </div>
         <div className="form-group">

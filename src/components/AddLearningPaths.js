@@ -4,7 +4,7 @@ import api from '../api';
 import { useHistory } from 'react-router-dom';
 
 export default function AddLearningPaths() {
-  const [img, setImg] = useState('/assets/img/courses/');
+  const [img, setImg] = useState('/assets/img/categories/');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const history = useHistory();
@@ -26,7 +26,7 @@ export default function AddLearningPaths() {
 
     await api.insertLearningPath(payload).then(res => {
       window.alert(`Learning Path added successfully!`);
-      setImg('/assets/img/courses/');
+      setImg('/assets/img/categories/');
       setName('');
       setDescription('');
     });

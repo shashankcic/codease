@@ -2,54 +2,56 @@ import React, { useState, useEffect } from 'react';
 import AddItems from './AddItems';
 import ReactTable from 'react-table-6';
 import api from '../api';
-
+import draftToHtml from 'draftjs-to-html';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'react-table-6/react-table.css';
 
-function UpdateModule(props) {
-
-	function updateModule(e) {
-		e.preventDefault();
-
-		window.location.href = `/modules/edit/${props.id}`;
-	}
-	return(
-		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateModule}>Update</div>
-	);
-}
-
-function DeleteModule(props) {
-
-	function deleteModule(e) {
-		e.preventDefault();
-		if (
-    	window.confirm(
-        `Do you want to delete this module permanently?`,
-      )
-    ) {
-      api.deleteModuleById(props.id)
-      window.location.reload()
-    }
-	}
-	return (
-		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteModule}>Delete</div>
-	);
-}
 
 export default function AllModules() {
 	const [modules, setModules] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
+	function UpdateModule(props) {
+
+		function updateModule(e) {
+			e.preventDefault();
+
+			window.location.href = `/modules/edit/${props.id}`;
+		}
+		return(
+			<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateModule}>Update</div>
+		);
+	}
+
+	function DeleteModule(props) {
+
+		function deleteModule(e) {
+			e.preventDefault();
+			if (
+	    	window.confirm(
+	        `Do you want to delete this module permanently?`,
+	      )
+	    ) {
+	      api.deleteModuleById(props.id)
+	      window.location.reload()
+	    }
+		}
+		return (
+			<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteModule}>Delete</div>
+		);
+	}
+
 	useEffect(() => {
-		const fetchModules = async () => {
+		const fetchModules = () => {
 			setIsLoading(true);
 
-			await api.getAllModules().then(modules => {
+		api.getAllModules().then(modules => {
 				setModules(modules.data.data);
-				console.log(modules.data.data[0]);
 				setIsLoading(false);
 			});
 		}
 		fetchModules();
+
 	},[])
 
 		const columnsTable = [
@@ -104,6 +106,11 @@ export default function AllModules() {
 			fiterable: true,
 		},
 		{
+			Header: 'Module Duration Unit',
+			accessor: 'durationUnit',
+			fiterable: true,
+		},
+		{
 			Header: 'Module Rating Count',
 			accessor: 'ratingCount',
 			fiterable: true,
@@ -154,12 +161,32 @@ export default function AllModules() {
 					</span>
 				);
 			},
-		},		
+		},				
 	];
+
 
 	let showTable = true;
 	if (!modules.length) {
 		showTable = false;
+	}
+
+	function showModule() {
+		if(modules) {
+			return <div>
+          {modules.map((module, index) => {
+            return (
+	            <div className='container' key={index}>
+	            	<div className='mt4 mb4 pa3'>
+		            	<h1 className='tc'>{index+1}. {module.heading}</h1>
+		              <div
+		                dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(module.body)) }} >
+		              </div>
+	            	</div>
+	            </div>
+            )
+          })}
+        </div>
+		}
 	}
 
 	return (
@@ -180,6 +207,7 @@ export default function AllModules() {
 					)
 				}
 	    </div>
+	    {showModule()}
 		</div>	
 	);
 }

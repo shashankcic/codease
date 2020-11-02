@@ -26,7 +26,6 @@ export default function EditLearningPaths() {
 		const payload = { img, name, description };
 
 		await api.updateLearningPathById(id, payload).then(res => {
-			console.log(payload);
 			window.alert(`Learning Path updated successfully!`);
 			history.push('/learningPaths');
 		});

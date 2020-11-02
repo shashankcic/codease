@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'http://localhost:5000/',
+	baseURL: 'https://codease.herokuapp.com/',
 })
 
 export const insertImage = payload => api.post(`/images`, payload);

@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Random from '../functions/Random';
+import api from '../api';
 
-function NotFound({images}) {
-  const [myImage, setMyImage] = useState(Random(images));
+function NotFound() {
+  const [images, setImages] = useState([]);
+  const [myImage, setMyImage] = useState('');
+
 
   useEffect(() => {
-    setMyImage(Random(images));
-  }, [images]);
+    const fetchImages = async () => {
+
+      await api.getAllImages().then(images => {
+        setImages(images.data.data);
+        setMyImage(Random(images.data.data));
+      });
+    }
+    fetchImages();
+  }, []);
 
   const handleChange = () => {
     setMyImage(Random(images));

@@ -7,8 +7,7 @@ function Category({category}) {
         <div className="ci-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + category.img})`}}></div>
         <div className="ci-text">
           <h5>{category.name}</h5>
-          <p>{category.desc}</p>
-          <span>{category.count} Courses</span>
+          <p>{category.description}</p>
         </div>
       </div>
     </div>

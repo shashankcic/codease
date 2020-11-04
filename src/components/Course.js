@@ -8,10 +8,10 @@ function Course({
   course,
   authors,
 }) {
-  const author = authors.find(x => x.id === course.aId);
+  const author = authors.find(x => x.name === course.authorName);
   return (
-    <div className={`mix col-lg-${lgSize} col-md-${mdSize} col-sm-${smSize} ${course.cClass}`}>
-      <Link to={`/course/${course.id}`}>
+    <div className={`mix col-lg-${lgSize} col-md-${mdSize} col-sm-${smSize}`}>
+      <Link to={`/module/${course._id}`}>
         <div className="br3 ma2 grow shadow-5 bw2 course-item">
           <div className="course-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + course.img})`}}>
             <div className="price">Price: ${course.price}</div>
@@ -19,8 +19,8 @@ function Course({
           <div className="course-info">
             <div className="course-text">
               <h5>{course.name}</h5>
-              <p>{course.level}</p>
-              <div className="students">{course.time} {course.timeUnit}</div>
+              <p>{course.categoryName}</p>
+              <div className="students">{course.duration} {course.durationUnit}</div>
             </div>
             <div className="course-author">
               <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>

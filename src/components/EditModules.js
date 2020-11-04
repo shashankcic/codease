@@ -59,6 +59,7 @@ export default function EditModules() {
 
   async function onChangeCategoryName(e) {
     setCategoryName(e.target.value);
+    console.log(categoryName);
   }
 
   async function onChangeAuthorName(e) {
@@ -149,14 +150,6 @@ export default function EditModules() {
       });
     }
 
-    const fetchCategories = async () => {
-      await api.getAllCategories().then(response => {
-        if (response.data.data.length > 0) {
-          setCategories(response.data.data.map(category=> category.name));
-        }
-      });
-    }
-
     const fetchAuthors = async () => {
       await api.getAllAuthors().then(response => {
         if (response.data.data.length > 0) {
@@ -167,12 +160,23 @@ export default function EditModules() {
 		
 		update();
     fetchLearningPaths();
-    fetchCategories();
     fetchAuthors();
 
-
-
 	}, [id]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      await api.getAllCategories().then(response => {
+        if (response.data.data.length > 0) {
+          let cats = response.data.data.filter(category=> category.learningPathName === learningPathName);
+          setCategories(cats.map(category => category.name));
+          // setDefaultCategoryName(response.data.data[0].name);
+          // setCategoryName(response.data.data[0].name);
+        }
+      });
+    }
+    fetchCategories();    
+  }, [learningPathName]);
 
 	return (
 		<div>

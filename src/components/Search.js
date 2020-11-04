@@ -14,8 +14,8 @@ function Search({courses, authors}) {
   }
   const [searchField, setSearchField] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const filteredCourses = courses.filter(course =>{
-    return (course.name.toLowerCase().includes(searchField.toLowerCase()) || course.level.toLowerCase().includes(searchField.toLowerCase()));
+  const filteredCourses = courses.filter(course => {
+    return (course.name.toLowerCase().includes(searchField.toLowerCase()) || course.heading.toLowerCase().includes(searchField.toLowerCase()));
   });
 
   const handleChange = e => {

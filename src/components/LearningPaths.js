@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Category from './Category';
+import LearningPath from './LearningPath';
 import api from '../api';
 
-function Categories(props) {
+function LearningPaths() {
   const [learningPaths, setLearningPaths] = useState([]);
   // const [isLoading, setIsLoading] = useState('');
 
@@ -18,7 +18,7 @@ function Categories(props) {
     fetchLearningPaths();
   }, [])
 
-  const allLearningPaths = learningPaths.map((category) =>  <Category key={category.id} category={category} /> ); 
+  const allLearningPaths = learningPaths.map((learningPath) =>  <LearningPath key={learningPath._id} learningPath={learningPath} /> ); 
   return(
     <section className="categories-section spad">
       <div className="container">
@@ -34,4 +34,4 @@ function Categories(props) {
   );
 }
 
-export default Categories;
+export default LearningPaths;

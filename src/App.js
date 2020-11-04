@@ -6,13 +6,17 @@ import {
 } from "react-router-dom";
 import Home from './routes/Home';
 import CoursesPage from './routes/CoursesPage';
-import Course from './routes/Course';
+import ModuleIntro from './routes/ModuleIntro';
+import Module from './routes/Module';
 import ContactUs from './routes/ContactUs';
 import AboutUs from './routes/AboutUs';
 import Elements from './routes/Elements';
 import Blogs from './routes/Blogs';
 import NotFound from './routes/NotFound';
 import SearchPage from './routes/SearchPage';
+import Category from './routes/Category';
+import Author from './routes/Author';
+import LearningPathPage from './routes/LearningPathPage';
 import AddImages from './components/AddImages';
 import EditImages from './components/EditImages';
 import AllImages from './components/AllImages';
@@ -57,8 +61,14 @@ function App() {
           <Route path='/element'>
             <Elements courses={initialCourses} authors={initialAuthors} />
           </Route>
-          <Route path='/course/:name'>
-            <Course courses={initialCourses} authors={initialAuthors}/>
+          <Route exact path='/module/:id'>
+            <ModuleIntro courses={initialCourses} authors={initialAuthors}/>
+          </Route>
+          <Route exact path='/module/:learningPathName/:categoryName/:id'>
+            <Module />
+          </Route>
+          <Route exact path='/author/:id'>
+            <Author />
           </Route>
           <Route path='/search'>
             <SearchPage courses={initialCourses} authors={initialAuthors}/>
@@ -110,6 +120,12 @@ function App() {
           </Route>
           <Route path='/modules/edit/:id'>
             <EditModules />
+          </Route>
+          <Route exact path='/category/:name/:level'>
+            <Category />
+          </Route>
+          <Route exact path='/category/:name'>
+            <LearningPathPage />
           </Route>
           <Route path="*"> 
             <NotFound images={initial404Images}/>

@@ -43,6 +43,15 @@ function Footer() {
               </ul>
             </div>
             <div className="widget-item">
+              <h4>JavaScript</h4>
+              <ul>
+                <li><a href="/">Loops</a></li>
+                <li><a href="/">if-else</a></li>
+                <li><a href="/">Variable Declaration</a></li>
+                <li><a href="/">Logical Operators</a></li>
+              </ul>
+            </div>
+            <div className="widget-item">
               <h4>Newsletter</h4>
               <form className="footer-newslatter">
                 <input type="email" placeholder="E-mail" />

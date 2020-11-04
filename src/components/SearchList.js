@@ -2,7 +2,7 @@ import React from 'react';
 import Course from './Course';
 
 function SearchList({filteredCourses, authors}) {
-  const filtered = filteredCourses.map(course =>  <Course key={course.id} course={course} authors={authors} /> ); 
+  const filtered = filteredCourses.map(course =>  <Course key={course._id} course={course} authors={authors} /> ); 
   return (
     <div className="row course-items-area">
       {filtered}

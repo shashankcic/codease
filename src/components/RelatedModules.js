@@ -5,7 +5,7 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import { useParams } from 'react-router-dom';
 import api from '../api';
 
-function RelatedAuthors() {
+function RelatedModules() {
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState('');
@@ -40,13 +40,14 @@ function RelatedAuthors() {
     fetchAuthors();
   }, [id]);
 
-  const relatedAuthors = (courses.length && authors.length && course) ? courses.filter(x => (x.authorName === course.authorName) && (x._id !== course._id)) : <div>Loading</div>;
-  const allCourses = (relatedAuthors.length) ? relatedAuthors.map((course) =>  <Course key={course._id} course={course} authors={authors} lgSize={12} mdSize={12} smSize={12} />) : <div>No more courses from the author</div>;
+  const relatedCourses = (courses.length && course) ? courses.filter(x => (x.learningPathName === course.learningPathName || x.categoryName === 'Beginner') && (x._id !== course._id)) : <div>Loading</div>;
+  
+  const allCourses = (relatedCourses.length && authors.length ) ? relatedCourses.map((course) =>  <Course key={course._id} course={course} authors={authors} lgSize={12} mdSize={12} smSize={12} />) : <div>Loading</div>;
   
   return (
     <section className="realated-courses spad">
       <div className="course-warp">
-        <h2 className="rc-title">More from the Author</h2>
+        <h2 className="rc-title">Related Courses</h2>
           <Carousel
             slidesPerPage={6}
             slidesPerScroll={1}
@@ -87,4 +88,4 @@ function RelatedAuthors() {
   );
 }
 
-export default RelatedAuthors;
+export default RelatedModules;

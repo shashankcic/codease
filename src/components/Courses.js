@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Course from './Course';
 import Featured from './FeaturedCourse';
 import Tabs from '@material-ui/core/Tabs';
@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import api from '../api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,19 +49,44 @@ function a11yProps(index) {
   };
 }
 
-function Courses({courses, authors}){
+function Courses(){
   const classes = useStyles();
-  
-  const allCourses = courses.map((course) =>  <Course key={course.id} course={course} authors={authors} />);
+  const [courses, setCourses] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
-  const beg = courses.filter(course =>  course.level==="Beginner"); 
-  const begCourses = beg.map(course =>  <Course key={course.id} course={course} authors={authors} /> );
+  useEffect(() => {
+    const fetchModules = async () => {
+      await api.getAllModules().then(response => {
+        if (response.data.data.length > 0) {
+          setCourses(response.data.data);
+        }
+      })
+    }
+    fetchModules();
 
-  const int = courses.filter(course =>  course.level==="Intermediate");
-  const intCourses = int.map(course =>  <Course key={course.id} course={course} authors={authors} /> );
+    const fetchAuthors = async () => {
+      await api.getAllAuthors().then(response => {
+        if (response.data.data.length > 0) {
+          setAuthors(response.data.data);
+        }
+      })
+    }
+    fetchAuthors();
+  }, [])  
 
-  const adv = courses.filter(course =>  course.level==="Advanced");   
-  const advCourses = adv.map(course =>  <Course key={course.id} course={course} authors={authors} /> );
+  const allCourses = (courses.length && authors.length) ? courses.map((course) =>  <Course key={course._id} course={course} authors={authors} />) : "loading";
+
+  const beg = courses.filter(course =>  course.categoryName==="Beginner"); 
+  const begCourses = beg.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+
+  const int = courses.filter(course =>  course.categoryName==="Intermediate");
+  const intCourses = int.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+
+  const adv = courses.filter(course =>  course.categoryName==="Advanced");   
+  const advCourses = adv.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+
+  const misc = courses.filter(course =>  course.categoryName==="Miscellaneous");   
+  const miscCourses = misc.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -73,7 +99,7 @@ function Courses({courses, authors}){
       <div className="container">        
         <Featured page="home"/>
       </div>
-      <div className={classes.root + "course-warp"} style={{width: "100%", margin: "20px auto"}}>
+      <div className={classes.root + " course-warp"} style={{width: "100%", margin: "20px auto"}}>
         <Tabs
           value={tabValue}
           indicatorColor="primary"
@@ -87,6 +113,7 @@ function Courses({courses, authors}){
           <Tab label="Beginner"  {...a11yProps(1)}/>
           <Tab label="Intermediate"  {...a11yProps(2)}/>
           <Tab label="Advanced"  {...a11yProps(3)}/>
+          <Tab label="Miscellaneous"  {...a11yProps(4)}/>
         </Tabs>
         <TabPanel value={tabValue} index={0}>
           <div className="row course-items-area">
@@ -106,6 +133,11 @@ function Courses({courses, authors}){
         <TabPanel value={tabValue} index={3}>
           <div className="row course-items-area">
             {advCourses}
+          </div>
+        </TabPanel>
+        <TabPanel value={tabValue} index={4}>
+          <div className="row course-items-area">
+            {miscCourses}
           </div>
         </TabPanel>
         <div className="featured-courses">

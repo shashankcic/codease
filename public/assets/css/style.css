@@ -9,10 +9,12 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+
+
 html,
 body {
 	height: 100%;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Raleway', sans-serif !important;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -346,6 +348,21 @@ ol {
 }
 
 /*------------------
+  Module section
+---------------------*/
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .site-layout .site-layout-background {
+    background: #141414;
+  }
+
+/*------------------
   404 section
 ---------------------*/
 
@@ -410,9 +427,9 @@ ol {
 
 .categorie-item .ci-thumb {
 	background-size: cover;
-  height: 150px; 
-  width: 90%;
-  max-width: 300px;
+  height: 250px; 
+  width: 100%;
+  max-width: 550px;
   margin: 0px auto;
 	-webkit-transition: all 0.2s;
 	-o-transition: all 0.2s;
@@ -825,12 +842,13 @@ ol {
 
 .footer-warp {
 	max-width: 1559px;
+	width: 90%;
 	padding: 0 15px;
 	margin: 0 auto;
 }
 
 .widget-item {
-	width: 20%;
+	width: 16%;
 	padding: 0 15px;
 }
 

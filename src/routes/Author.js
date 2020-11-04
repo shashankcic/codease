@@ -42,13 +42,21 @@ function Author() {
     fetchAuthor();
   }, [id]);
 
-  const authorModules = (author && modules.length) ? modules.filter(module => author.name === module.authorName) : <div>Loading</div>;
+  let authorModules = [];
+  if (author && modules.length) {
+    authorModules = modules.filter(module => author.name === module.authorName);
+  }
+
+  // useEffect(() => {
+  //   setAuthorModules(authorModule);
+  // }, [authorModule])
+
   const allModules = (authorModules.length && authors.length ) ? authorModules.map(module =>  <Course key={module._id} course={module} authors={authors} /> ) : <h2 className='tc w-100'>No modules found</h2>;
   return (
     <div>
       <Header />
       <PageInfo title="Author" bg="/assets/img/page-bg/3.jpg" />
-      <Search courses={modules} authors={authors} />
+      <Search courses={authorModules} authors={authors} />
       <div className='container'>
         <h1 className=''>{author.name}</h1>
         <div className='set-bg w-50 vh-50 mb4' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>

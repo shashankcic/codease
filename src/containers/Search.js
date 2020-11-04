@@ -12,6 +12,7 @@ function Search({courses, authors}) {
     class1="ss-other-page";
     class2="col-lg-10 offset-lg-1";
   }
+  
   const [searchField, setSearchField] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const filteredCourses = courses.filter(course => {

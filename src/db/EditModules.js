@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -116,7 +116,7 @@ export default function EditModules() {
 
 		await api.updateModuleById(id, payload).then(res => {
 			window.alert(`Module updated successfully!`);
-			history.push('/modules');
+			history.push('/db/modules');
 		});
 	}
 
@@ -248,13 +248,17 @@ export default function EditModules() {
         </div>
         <div className="form-group">
           <label>Module Image: </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
             required
             value={img}
             onChange={onChangeImg}
-          />
+          >
+            <option value="/assets/img/courses/c++.png">C++</option>
+            <option value="/assets/img/courses/java.png">Java</option>
+            <option value="/assets/img/courses/python.png">Python</option>
+            <option value="/assets/img/courses/js.png">JavaScript</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Module Name: </label>
@@ -278,13 +282,15 @@ export default function EditModules() {
         </div>
         <div className="form-group">
           <label>Module Price Currency: </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
             required
             value={priceCurrency}
             onChange={onChangePriceCurrency}
-          />
+          >
+            <option value='USD'>USD</option>
+            <option value='INR'>INR</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Module Price: </label>
@@ -318,13 +324,15 @@ export default function EditModules() {
         </div>
         <div className="form-group">
           <label>Module Duration Unit: </label>
-          <input 
-            type="text"
+          <select 
             className="form-control"
             required
             value={durationUnit}
             onChange={onChangeDurationUnit}
-          />
+          >
+            <option value='Hours'>Hours</option>
+            <option value='Mins'>Mins</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Module Heading: </label>
@@ -370,7 +378,7 @@ export default function EditModules() {
 
         <div className="form-group">
           <button className="btn btn-primary" onClick={onSubmit}>Update Module</button>
-          <button className="btn btn-danger" onClick={() => history.push('/modules')}>Cancel</button>
+          <button className="btn btn-danger" onClick={() => history.push('/db/modules')}>Cancel</button>
         </div>
       </div>
     </div>

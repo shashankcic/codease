@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import About from '../components/About';
+import About from '../containers/About';
 import Footer from '../components/Footer';
 
 function AboutUs() {

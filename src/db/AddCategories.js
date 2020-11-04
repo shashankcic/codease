@@ -1,71 +1,66 @@
 import React, { useState, useEffect, useRef } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-export default function EditCategories() {
-	const { id } = useParams();
-	const [img, setImg] = useState('');
-	const [name, setName] = useState('');
-	const [description, setDescription] = useState('');
+export default function AddCategories() {
+  const [img, setImg] = useState('/assets/img/categories/');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [learningPathName, setLearningPathName] = useState('');
   const [learningPaths, setLearningPaths] = useState([]);
-	const history = useHistory();
+  const history = useHistory();
   const learningPathRef = useRef('learningPathInput');
+  const [defaultLPName, setDefaultLPName] = useState(''); 
 
-	async function onChangeImg(e) {
-		setImg(e.target.value);
-	}
+  useEffect(() => {
+    const fetchLearningPaths = async () => {
 
-	async function onChangeName(e) {
-		setName(e.target.value);
-	}
+      await api.getAllLearningPaths().then(response => {
+        if (response.data.data.length > 0) {
+          setLearningPaths(response.data.data.map(learningPath=> learningPath.name));
+          setDefaultLPName(response.data.data[0].name);
+          setLearningPathName(response.data.data[0].name);
+        }
+      });
+    }
+    fetchLearningPaths();
+  },[])
 
-	async function onChangeDescription(e) {
-		setDescription(e.target.value);
-	}
+  async function onChangeImg(e) {
+    setImg(e.target.value);
+  }
+
+  async function onChangeName(e) {
+    setName(e.target.value);
+  }
+
+  async function onChangeDescription(e) {
+    setDescription(e.target.value);
+  }
 
   async function onChangeLearningPathName(e) {
     setLearningPathName(e.target.value);
   }
 
-	async function onSubmit(e) {
-		const payload = { img, name, description, learningPathName };
+  async function onSubmit(e) {
+    const payload = { img, name, description, learningPathName };
 
-		await api.updateCategoryById(id, payload).then(res => {
-			window.alert(`Category updated successfully!`);
-			history.push('/categories');
-		});
-	}
+    await api.insertCategory(payload).then(res => {
+      window.alert(`Category added successfully!`);
+      setImg('/assets/img/categories/');
+      setName('');
+      setDescription('');
+      setLearningPathName(defaultLPName);
+    })
+    .catch(err => console.log('Error in onSubmit', err));
+  }
 
-	useEffect(() => {
-		const update = async () => {
-			const category = await api.getCategoryById(id);
-
-			setImg(category.data.data.img);
-			setName(category.data.data.name);
-			setDescription(category.data.data.description);
-			setLearningPathName(category.data.data.learningPathName);
-		};
-
-    const fetchLearningPaths = async () => {
-      await api.getAllLearningPaths().then(response => {
-        if (response.data.data.length > 0) {
-          setLearningPaths(response.data.data.map(learningPath=> learningPath.name));
-        }
-      });
-    }
-		
-		update();
-    fetchLearningPaths();
-
-	}, [id]);
-
-	return (
-		<div>
+  return (
+    <div>
       <AddItems />
       <div style={{marginTop: 10}} className="container">
-        <h3>Update Category</h3>
+        <h3>Add New Category</h3>
         <div className="form-group">
           <label>Category Learning Path: </label>
           <select
@@ -89,13 +84,17 @@ export default function EditCategories() {
         </div>
         <div className="form-group">
           <label>Category Image: </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
             required
             value={img}
             onChange={onChangeImg}
-          />
+          >
+            <option value="/assets/img/categories/c++.png">C++</option>
+            <option value="/assets/img/categories/java.png">Java</option>
+            <option value="/assets/img/categories/python.png">Python</option>
+            <option value="/assets/img/categories/js.png">JavaScript</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Category Name: </label>
@@ -121,10 +120,10 @@ export default function EditCategories() {
         <br />
 
         <div className="form-group">
-          <button className="btn btn-primary" onClick={onSubmit}>Update Category</button>
-          <button className="btn btn-danger" onClick={() => history.push('/categories')}>Cancel</button>
+          <button className="btn btn-primary" onClick={onSubmit}>Add Category</button>
+          <button className="btn btn-danger" onClick={() => history.push('/db/categories')}>Cancel</button>
         </div>
       </div>
     </div>
-	);
+  );
 }

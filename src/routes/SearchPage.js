@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
+import Search from '../containers/Search';
 import Footer from '../components/Footer';
 
 function SearchPage({courses, authors}) {

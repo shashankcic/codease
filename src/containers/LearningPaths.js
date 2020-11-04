@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LearningPath from './LearningPath';
+import LearningPath from '../components/LearningPath';
 import api from '../api';
 
 function LearningPaths() {

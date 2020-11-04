@@ -8,34 +8,34 @@ export default function AddItems() {
       <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
-            <Link to="/images" className="nav-link">Images</Link>
+            <Link to="/db/images" className="nav-link">Images</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/images/add" className="nav-link">Add Images</Link>
+            <Link to="/db/images/add" className="nav-link">Add Images</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/authors" className="nav-link">Authors</Link>
+            <Link to="/db/authors" className="nav-link">Authors</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/authors/add" className="nav-link">Add Authors</Link>
+            <Link to="/db/authors/add" className="nav-link">Add Authors</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/learningPaths" className="nav-link">Learning Paths</Link>
+            <Link to="/db/learningPaths" className="nav-link">Learning Paths</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/learningPaths/add" className="nav-link">Add Learning Paths</Link>
+            <Link to="/db/learningPaths/add" className="nav-link">Add Learning Paths</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/categories" className="nav-link">Categories</Link>
+            <Link to="/db/categories" className="nav-link">Categories</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/categories/add" className="nav-link">Add Categories</Link>
+            <Link to="/db/categories/add" className="nav-link">Add Categories</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/modules" className="nav-link">Modules</Link>
+            <Link to="/db/modules" className="nav-link">Modules</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/modules/add" className="nav-link">Add Modules</Link>
+            <Link to="/db/modules/add" className="nav-link">Add Modules</Link>
           </li>
         </ul>
       </div>

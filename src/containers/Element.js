@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CircularProgressWithLabel } from './CircularStatic';
+import { CircularProgressWithLabel } from '../components/CircularStatic';
 import $ from 'jquery';
 
 class Element extends Component {

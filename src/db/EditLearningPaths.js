@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ export default function EditLearningPaths() {
 
 		await api.updateLearningPathById(id, payload).then(res => {
 			window.alert(`Learning Path updated successfully!`);
-			history.push('/learningPaths');
+			history.push('/db/learningPaths');
 		});
 	}
 
@@ -50,12 +50,17 @@ export default function EditLearningPaths() {
 	      <h3>Update Learning Path</h3>
       	<div className="form-group">
       		<label>Learning Path Image: </label>
-      		<input 
-      			type="text"
-      			className="form-control"
-      			value={img}
-      			onChange={onChangeImg}
-      		/>
+      		<select
+            className="form-control"
+            required
+            value={img}
+            onChange={onChangeImg}
+          >
+            <option value="/assets/img/categories/c++.png">C++</option>
+            <option value="/assets/img/categories/java.png">Java</option>
+            <option value="/assets/img/categories/python.png">Python</option>
+            <option value="/assets/img/categories/js.png">JavaScript</option>
+          </select>
       	</div>
       	<div className="form-group">
       		<label>Learning Path Name: </label>
@@ -80,7 +85,7 @@ export default function EditLearningPaths() {
 
       	<div className="form-group">
       		<button className="btn btn-primary" onClick={onSubmit}>Update Learning Path</button>
-    			<button className="btn btn-danger" onClick={() => history.push('/learningPaths')}>Cancel</button>
+    			<button className="btn btn-danger" onClick={() => history.push('/db/learningPaths')}>Cancel</button>
       	</div>
 	    </div>
 		</div>

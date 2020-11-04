@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
 
@@ -45,12 +45,18 @@ export default function AddAuthors() {
         <h3>Add New Author</h3>
         <div className="form-group">
           <label>Author Image: </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
+            required
             value={img}
             onChange={onChangeImg}
-          />
+          >
+            <option value="/assets/img/authors/aastha.jpg">Aastha</option>
+            <option value="/assets/img/authors/bhanu.jpg">Bhanu</option>
+            <option value="/assets/img/authors/devansh.jpg">Kirti</option>
+            <option value="/assets/img/authors/kirti.jpg">Devansh</option>
+            <option value="/assets/img/authors/shashank.jpg">Shashank</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Author Name: </label>
@@ -84,7 +90,7 @@ export default function AddAuthors() {
 
         <div className="form-group">
           <button className="btn btn-primary" onClick={onSubmit}>Add Author</button>
-          <button className="btn btn-danger" onClick={() => history.push('/authors')}>Cancel</button>
+          <button className="btn btn-danger" onClick={() => history.push('/db/authors')}>Cancel</button>
         </div>
       </div>
     </div>

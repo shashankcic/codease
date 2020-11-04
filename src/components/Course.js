@@ -16,6 +16,10 @@ function Course({
           <div className="course-thumb set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + course.img})`}}>
             <div className="price">Price: ${course.price}</div>
           </div>
+          <div>
+            <Link to={'/module/' + course.learningPathName + '/' + course.categoryName + '/' + course._id} className="f6 link dim ph3 pv2 tc mb2 dib white w-50 white items-center hover-bg-white bg-purple">Start</Link>
+            <Link to={'/module/' + course._id} className="f6 link dim ph3 pv2 mb2 tc dib white w-50 white items-center hover-bg-white bg-purple">Details</Link>
+          </div>
           <div className="course-info">
             <div className="course-text">
               <h5>{course.name}</h5>

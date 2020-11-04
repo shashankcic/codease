@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
+import Search from '../containers/Search';
 import Course from '../components/Course';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';

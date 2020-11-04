@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
 
@@ -84,7 +84,7 @@ export default function AddImages() {
 
         <div className="form-group">
           <button className="btn btn-primary" onClick={onSubmit}>Add Image</button>
-          <button className="btn btn-danger" onClick={() => history.push('/images')}>Cancel</button>
+          <button className="btn btn-danger" onClick={() => history.push('/db/images')}>Cancel</button>
         </div>
       </div>
     </div>

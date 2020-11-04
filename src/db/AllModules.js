@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import ReactTable from 'react-table-6';
 import api from '../api';
 import draftToHtml from 'draftjs-to-html';
@@ -9,14 +9,20 @@ import 'react-table-6/react-table.css';
 
 export default function AllModules() {
 	const [modules, setModules] = useState([]);
+	const [module, setModule] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [showModule, setShowModule] = useState(false);
+	const [showModules, setShowModules] = useState(false);
+	const [hideShow, setHideShow] = useState('Show');
+	const [hideShowAll, setHideShowAll] = useState('ShowAll');
+	const [showBodyText, setShowBodyText] = useState('');
 
 	function UpdateModule(props) {
 
 		function updateModule(e) {
 			e.preventDefault();
 
-			window.location.href = `/modules/edit/${props.id}`;
+			window.location.href = `/db/modules/edit/${props.id}`;
 		}
 		return(
 			<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateModule}>Update</div>
@@ -48,6 +54,7 @@ export default function AllModules() {
 		api.getAllModules().then(modules => {
 				setModules(modules.data.data);
 				setIsLoading(false);
+				setShowBodyText(modules.data.data[0]._id);
 			});
 		}
 		fetchModules();
@@ -170,8 +177,12 @@ export default function AllModules() {
 		showTable = false;
 	}
 
-	function showModule() {
-		if(modules) {
+	function onChangeShowBodyText (e) {
+		setShowBodyText(e.target.value);
+	}
+
+	function ShowModules() {
+		if(modules && showModules) {
 			return <div>
           {modules.map((module, index) => {
             return (
@@ -186,6 +197,64 @@ export default function AllModules() {
             )
           })}
         </div>
+		}
+		else return null;
+	}
+
+	useEffect(() => {
+		const fetchModule = async () => {
+			
+			await api.getModuleById(showBodyText).then(module => {
+				if(module.data.data) {
+					setModule(module.data.data);
+				}
+			})
+			.catch(err => <div>Enter Correct ID</div>);
+		}
+		fetchModule();
+	}, [showBodyText, showModule])
+
+	function ShowModule() {
+		if(module && showModule) {
+			return (
+				<div>
+          <div className='container'>
+          	<div className='mt4 mb4 pa3'>
+            	<h1 className='tc'>{module.heading}</h1>
+              <div
+                dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(module.body)) }} >
+              </div>
+          	</div>
+          </div>
+		    </div>
+			);
+		}
+		else return null;
+	}
+
+	function onClickShowModules() {
+		setShowModules(!showModules);
+		if (!showModules) {
+			setHideShowAll('HideAll');
+			if (hideShow==='Hide') {
+				setHideShow('Show');
+				setShowModule(!showModule);
+			}
+		} else {
+			setHideShowAll('ShowAll');
+		}
+	}
+
+	function onClickShowModule() {
+		setShowModule(!showModule);
+		if (!showModule) {
+			setHideShow('Hide');
+			if (hideShowAll==='HideAll') {
+				setHideShowAll('ShowAll');
+				setShowModules(!showModules);
+			}
+		} else {
+			setHideShow('Show');
 		}
 	}
 
@@ -207,7 +276,34 @@ export default function AllModules() {
 					)
 				}
 	    </div>
-	    {showModule()}
+	    <div className='container'>
+	    	<div className="form-group">
+          <label>Select Module to Show Body: </label>
+          <select
+            className="form-control"
+            required
+            value={showBodyText}
+            onChange={onChangeShowBodyText}
+          >
+          	{
+              modules.map(function(module) {
+                return <option 
+                  key={module._id}
+                  value={module._id}
+                >
+                  {module.name}
+                </option>;
+              })
+            }
+          </select>
+        </div>
+        <div className="form-group">
+	    		<div className='f7 link dim ph3 pv2 dib white bg-gray tc ma2' onClick={onClickShowModules}>{hideShowAll}</div>
+	    		<div className='f7 link dim ph3 pv2 dib white bg-gray tc ma2' onClick={onClickShowModule}>{hideShow}</div>
+        </div>
+	    </div>
+	    {ShowModule(showBodyText)}
+	    {ShowModules()}
 		</div>	
 	);
 }

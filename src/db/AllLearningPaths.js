@@ -1,54 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import ReactTable from 'react-table-6';
 import api from '../api';
 
 import 'react-table-6/react-table.css';
 
-function UpdateAuthor(props) {
+function UpdateLearningPath(props) {
 
-	function updateAuthor(e) {
+	function updateLearningPath(e) {
 		e.preventDefault();
 
-		window.location.href = `/authors/edit/${props.id}`;
+		window.location.href = `/db/learningPaths/edit/${props.id}`;
 	}
 	return(
-		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateAuthor}>Update</div>
+		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateLearningPath}>Update</div>
 	);
 }
 
-function DeleteAuthor(props) {
+function DeleteLearningPath(props) {
 
-	function deleteAuthor(e) {
+	function deleteLearningPath(e) {
 		e.preventDefault();
 		if (
     	window.confirm(
-        `Do you want to delete this author permanently?`,
+        `Do you want to delete this learning path permanently?`,
       )
     ) {
-      api.deleteAuthorById(props.id)
+      api.deleteLearningPathById(props.id)
       window.location.reload()
     }
 	}
 	return (
-		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteAuthor}>Delete</div>
+		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteLearningPath}>Delete</div>
 	);
 }
 
-export default function AllAuthors() {
-	const [authors, setAuthors] = useState([]);
+export default function AllLearningPaths() {
+	const [learningPaths, setLearningPaths] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const fetchAuthors = async () => {
+		const fetchLearningPaths = async () => {
 			setIsLoading(true);
 
-			await api.getAllAuthors().then(authors => {
-				setAuthors(authors.data.data);
+			await api.getAllLearningPaths().then(learningPaths => {
+				setLearningPaths(learningPaths.data.data);
 				setIsLoading(false);
 			});
 		}
-		fetchAuthors();
+		fetchLearningPaths();
 	},[])
 
 		const columnsTable = [
@@ -58,23 +58,18 @@ export default function AllAuthors() {
 			fiterable: true,
 		},
 		{
-			Header: 'Author Image',
+			Header: 'Learning Path Image',
 			accessor: 'img',
 			fiterable: true,
 		},
 		{
-			Header: 'Author Name',
+			Header: 'Learning Path Name',
 			accessor: 'name',
 			fiterable: true,
 		},
 		{
-			Header: 'Author Profession',
-			accessor: 'work',
-			fiterable: true,
-		},
-		{
-			Header: 'About Author',
-			accessor: 'about',
+			Header: 'Learning Path Description',
+			accessor: 'description',
 			fiterable: true,
 		},
 		{
@@ -83,7 +78,7 @@ export default function AllAuthors() {
 			Cell: function(props) {
 				return (
 					<span>
-						<DeleteAuthor id={props.original._id} />
+						<DeleteLearningPath id={props.original._id} />
 					</span>
 				);
 			},
@@ -94,7 +89,7 @@ export default function AllAuthors() {
 			Cell: function(props) {
 				return (
 					<span>
-						<UpdateAuthor id={props.original._id} />
+						<UpdateLearningPath id={props.original._id} />
 					</span>
 				);
 			},
@@ -102,7 +97,7 @@ export default function AllAuthors() {
 	];
 
 	let showTable = true;
-	if (!authors.length) {
+	if (!learningPaths.length) {
 		showTable = false;
 	}
 
@@ -110,11 +105,11 @@ export default function AllAuthors() {
 		<div >
 			<AddItems />
 			<div className="container">
-	      <h3>Author List</h3>
+	      <h3>Learning Path List</h3>
 	      {
 					showTable && (
 						<ReactTable
-							data={authors}
+							data={learningPaths}
 							columns={columnsTable}
 							loading={isLoading}
 							defaultPageSize={10}

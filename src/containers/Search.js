@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import SearchList from './SearchList';
-import Scroll from './Scroll';
+import SearchList from '../components/SearchList';
+import Scroll from '../components/Scroll';
 
 function Search({courses, authors}) {
   let location = useLocation();

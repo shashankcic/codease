@@ -31,8 +31,8 @@ class Header extends Component {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="" activeClassName="text-primary" to="/courses">
-                      Courses
+                    <NavLink className="" activeClassName="text-primary" to="/modules">
+                      Modules
                     </NavLink>
                   </li>
                   <li>

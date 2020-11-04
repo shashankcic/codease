@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
-import Element from '../components/Element';
+import Search from '../containers/Search';
+import Element from '../containers/Element';
 import Footer from '../components/Footer';
 
 function Elements({courses, authors}) {

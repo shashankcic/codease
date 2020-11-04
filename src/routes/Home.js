@@ -1,10 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import LearningPaths from '../components/LearningPaths';
-import Search from '../components/Search';
-import Courses from '../components/Courses';
-import Banner from '../components/Banner';
+import LearningPaths from '../containers/LearningPaths';
+import Search from '../containers/Search';
+import Modules from '../containers/Modules';
 import Footer from '../components/Footer';
 
 function Home({courses, authors}) {
@@ -14,8 +13,7 @@ function Home({courses, authors}) {
       <Hero />
       <LearningPaths/>
       <Search courses={courses} authors={authors} />
-      <Courses courses={courses} authors={authors}/>
-      <Banner />
+      <Modules />
       <Footer /> 
     </div>
   );

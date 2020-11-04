@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ export default function EditImages() {
 
 		await api.updateImageById(id, payload).then(res => {
 			window.alert(`Image updated successfully!`);
-			history.push('/images');
+			history.push('/db/images');
 		});
 	}
 
@@ -95,7 +95,7 @@ export default function EditImages() {
 
       	<div className="form-group">
       		<button className="btn btn-primary" onClick={onSubmit}>Update Image</button>
-    			<button className="btn btn-danger" onClick={() => history.push('/images')}>Cancel</button>
+    			<button className="btn btn-danger" onClick={() => history.push('/db/images')}>Cancel</button>
       	</div>
 	    </div>
 		</div>

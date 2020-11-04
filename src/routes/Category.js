@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
+import Search from '../containers/Search';
 import Footer from '../components/Footer';
 import Course from '../components/Course';
 import api from '../api';

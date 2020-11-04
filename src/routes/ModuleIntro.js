@@ -1,11 +1,10 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
-import SingleModule from '../components/SingleModule';
-import RelatedModules from '../components/RelatedModules';
-import RelatedAuthors from '../components/RelatedAuthors';
-import Banner from '../components/Banner';
+import Search from '../containers/Search';
+import SingleModule from '../containers/SingleModule';
+import RelatedModules from '../containers/RelatedModules';
+import RelatedAuthors from '../containers/RelatedAuthors';
 import Footer from '../components/Footer';
 
 function ModuleIntro({courses, authors}) {
@@ -17,7 +16,6 @@ function ModuleIntro({courses, authors}) {
       <SingleModule />
       <RelatedModules />
       <RelatedAuthors />
-      <Banner />
       <Footer /> 
     </div>
   );

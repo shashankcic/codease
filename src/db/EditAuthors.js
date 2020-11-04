@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ export default function EditAuthors() {
 		await api.updateAuthorById(id, payload).then(res => {
 			console.log(payload);
 			window.alert(`Author details updated successfully!`);
-			history.push('/authors');
+			history.push('/db/authors');
 		});
 	}
 
@@ -96,7 +96,7 @@ export default function EditAuthors() {
 
       	<div className="form-group">
       		<button className="btn btn-primary" onClick={onSubmit}>Update Author</button>
-    			<button className="btn btn-danger" onClick={() => history.push('/authors')}>Cancel</button>
+    			<button className="btn btn-danger" onClick={() => history.push('/db/authors')}>Cancel</button>
       	</div>
 	    </div>
 		</div>

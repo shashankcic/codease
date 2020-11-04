@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Course from './Course';
+import Course from '../components/Course';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { useParams } from 'react-router-dom';

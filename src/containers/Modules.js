@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Course from './Course';
-import Featured from './FeaturedCourse';
+import Course from '../components/Course';
+import Featured from '../components/FeaturedCourse';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,7 +49,7 @@ function a11yProps(index) {
   };
 }
 
-function Courses(){
+function Modules(){
   const classes = useStyles();
   const [courses, setCourses] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -175,4 +175,4 @@ function Courses(){
   );
 }
 
-export default Courses;
+export default Modules;

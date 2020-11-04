@@ -1,22 +1,20 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
-import Courses from '../components/Courses';
-import Banner from '../components/Banner';
+import Search from '../containers/Search';
+import Modules from '../containers/Modules';
 import Footer from '../components/Footer';
 
-function CoursesPage({courses, authors}) {
+function ModulesPage({courses, authors}) {
   return (
     <div>
       <Header />
       <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
       <Search courses={courses} authors={authors} />
-      <Courses courses={courses} authors={authors}/>
-      <Banner />
+      <Modules />
       <Footer /> 
     </div>
   );
 }
 
-export default CoursesPage;
+export default ModulesPage;

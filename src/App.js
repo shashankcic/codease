@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './routes/Home';
-import CoursesPage from './routes/CoursesPage';
+import ModulesPage from './routes/ModulesPage';
 import ModuleIntro from './routes/ModuleIntro';
 import Module from './routes/Module';
 import ContactUs from './routes/ContactUs';
@@ -17,26 +17,12 @@ import SearchPage from './routes/SearchPage';
 import Category from './routes/Category';
 import Author from './routes/Author';
 import LearningPathPage from './routes/LearningPathPage';
-import AddImages from './components/AddImages';
-import EditImages from './components/EditImages';
-import AllImages from './components/AllImages';
-import AddAuthors from './components/AddAuthors';
-import EditAuthors from './components/EditAuthors';
-import AllAuthors from './components/AllAuthors';
-import AddLearningPaths from './components/AddLearningPaths';
-import EditLearningPaths from './components/EditLearningPaths';
-import AllLearningPaths from './components/AllLearningPaths';
-import AddCategories from './components/AddCategories';
-import EditCategories from './components/EditCategories';
-import AllCategories from './components/AllCategories';
-import AddModules from './components/AddModules';
-import EditModules from './components/EditModules';
-import AllModules from './components/AllModules';
-import initialCourses from './data/initialCourses';
-import initialAuthors from './data/initialAuthors';
-import initial404Images from './data/initial404Images';
-import initialCourseCategories from './data/initialCourseCategories';
-import initialBlogs from './data/initialBlogs';
+import { 
+  AddAuthors, AddCategories, AddImages, AddLearningPaths, AddModules,
+  AllAuthors, AllCategories, AllImages, AllLearningPaths, AllModules,
+  EditAuthors, EditCategories, EditImages, EditLearningPaths, EditModules,
+} from './db';
+import { initialAuthors, initialBlogs, initialCourseCategories, initialCourses } from './data'; 
 
 function App() {
   return (
@@ -49,16 +35,16 @@ function App() {
           <Route exact path='/'>
             <Home courses={initialCourses} authors={initialAuthors} categories={initialCourseCategories}/>
           </Route>  
-          <Route path='/contact'>
+          <Route exact path='/contact'>
             <ContactUs />
           </Route>
-          <Route path='/courses'>
-            <CoursesPage courses={initialCourses} authors={initialAuthors} />
+          <Route exact path='/modules'>
+            <ModulesPage courses={initialCourses} authors={initialAuthors} />
           </Route>
-          <Route path='/about'>
+          <Route exact path='/about'>
             <AboutUs />
           </Route>
-          <Route path='/element'>
+          <Route exact path='/element'>
             <Elements courses={initialCourses} authors={initialAuthors} />
           </Route>
           <Route exact path='/module/:id'>
@@ -70,55 +56,55 @@ function App() {
           <Route exact path='/author/:id'>
             <Author />
           </Route>
-          <Route path='/search'>
+          <Route exact path='/search'>
             <SearchPage courses={initialCourses} authors={initialAuthors}/>
           </Route>
-          <Route path='/blog'>
+          <Route exact path='/blog'>
             <Blogs courses={initialCourses} blogs={initialBlogs} authors={initialAuthors}/>
           </Route>
-          <Route exact path='/images'>
+          <Route exact path='/db/images'>
             <AllImages />
           </Route>
-          <Route path='/images/add'>
+          <Route exact path='/db/images/add'>
             <AddImages />
           </Route>
-          <Route path='/images/edit/:id'>
+          <Route exact path='/db/images/edit/:id'>
             <EditImages />
           </Route>
-          <Route exact path='/authors'>
+          <Route exact path='/db/authors'>
             <AllAuthors />
           </Route>
-          <Route path='/authors/add'>
+          <Route exact path='/db/authors/add'>
             <AddAuthors />
           </Route>
-          <Route path='/authors/edit/:id'>
+          <Route exact path='/db/authors/edit/:id'>
             <EditAuthors />
           </Route>
-          <Route exact path='/learningPaths'>
+          <Route exact path='/db/learningPaths'>
             <AllLearningPaths />
           </Route>
-          <Route path='/learningPaths/add'>
+          <Route exact path='/db/learningPaths/add'>
             <AddLearningPaths />
           </Route>
-          <Route path='/learningPaths/edit/:id'>
+          <Route exact path='/db/learningPaths/edit/:id'>
             <EditLearningPaths />
           </Route>
-          <Route exact path='/categories'>
+          <Route exact path='/db/categories'>
             <AllCategories />
           </Route>
-          <Route path='/categories/add'>
+          <Route exact path='/db/categories/add'>
             <AddCategories />
           </Route>
-          <Route path='/categories/edit/:id'>
+          <Route exact path='/db/categories/edit/:id'>
             <EditCategories />
           </Route>
-          <Route exact path='/modules'>
+          <Route exact path='/db/modules'>
             <AllModules />
           </Route>
-          <Route path='/modules/add'>
+          <Route exact path='/db/modules/add'>
             <AddModules />
           </Route>
-          <Route path='/modules/edit/:id'>
+          <Route exact path='/db/modules/edit/:id'>
             <EditModules />
           </Route>
           <Route exact path='/category/:name/:level'>
@@ -128,7 +114,7 @@ function App() {
             <LearningPathPage />
           </Route>
           <Route path="*"> 
-            <NotFound images={initial404Images}/>
+            <NotFound />
           </Route>
         </Switch>
       </div>

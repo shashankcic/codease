@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
 import PageInfo from '../components/PageInfo';
-import Search from '../components/Search';
-import Blog from '../components/Blog';
-import Banner from '../components/Banner';
+import Search from '../containers/Search';
+import Blog from '../containers/Blog';
 import Footer from '../components/Footer';
 
 function Blogs({courses, blogs, authors}) {
@@ -13,7 +12,6 @@ function Blogs({courses, blogs, authors}) {
       <PageInfo title="Blog" bg="/assets/img/page-bg/3.jpg" />
       <Search courses={courses} authors={authors} />
       <Blog blogs={blogs} authors={authors}/>
-      <Banner />
       <Footer />
     </div>
   );

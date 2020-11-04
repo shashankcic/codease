@@ -1,54 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import ReactTable from 'react-table-6';
 import api from '../api';
 
 import 'react-table-6/react-table.css';
 
-function UpdateCategory(props) {
+function UpdateImage(props) {
 
-	function updateCategory(e) {
+	function updateImage(e) {
 		e.preventDefault();
 
-		window.location.href = `/categories/edit/${props.id}`;
+		window.location.href = `/db/images/edit/${props.id}`;
 	}
 	return(
-		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateCategory}>Update</div>
+		<div style={{ "color": "#ef9b0f",	"cursor": "pointer"}} onClick={updateImage}>Update</div>
 	);
 }
 
-function DeleteCategory(props) {
+function DeleteImage(props) {
 
-	function deleteCategory(e) {
+	function deleteImage(e) {
 		e.preventDefault();
 		if (
     	window.confirm(
-        `Do you want to delete this category permanently?`,
+        `Do you want to delete this image permanently?`,
       )
     ) {
-      api.deleteCategoryById(props.id)
+      api.deleteImageById(props.id)
       window.location.reload()
     }
 	}
 	return (
-		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteCategory}>Delete</div>
+		<div style={{ "color": "#ff2222",	"cursor": "pointer"}} onClick={deleteImage}>Delete</div>
 	);
 }
 
-export default function AllCategories() {
-	const [categories, setCategories] = useState([]);
+export default function AllImages() {
+	const [images, setImages] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const fetchCategories = async () => {
+		const fetchImages = async () => {
 			setIsLoading(true);
 
-			await api.getAllCategories().then(categories => {
-				setCategories(categories.data.data);
+			await api.getAllImages().then(images => {
+				setImages(images.data.data);
 				setIsLoading(false);
 			});
 		}
-		fetchCategories();
+		fetchImages();
 	},[])
 
 		const columnsTable = [
@@ -58,23 +58,23 @@ export default function AllCategories() {
 			fiterable: true,
 		},
 		{
-			Header: 'Learning Path Name',
-			accessor: 'learningPathName',
+			Header: 'Image Name',
+			accessor: 'imgName',
 			fiterable: true,
 		},
 		{
-			Header: 'Category Image',
-			accessor: 'img',
+			Header: 'Image Path',
+			accessor: 'imgPath',
 			fiterable: true,
 		},
 		{
-			Header: 'Category Name',
-			accessor: 'name',
+			Header: 'Error Title',
+			accessor: 'errTitle',
 			fiterable: true,
 		},
 		{
-			Header: 'Category Description',
-			accessor: 'description',
+			Header: 'Error Text',
+			accessor: 'errText',
 			fiterable: true,
 		},
 		{
@@ -83,7 +83,7 @@ export default function AllCategories() {
 			Cell: function(props) {
 				return (
 					<span>
-						<DeleteCategory id={props.original._id} />
+						<DeleteImage id={props.original._id} />
 					</span>
 				);
 			},
@@ -94,7 +94,7 @@ export default function AllCategories() {
 			Cell: function(props) {
 				return (
 					<span>
-						<UpdateCategory id={props.original._id} />
+						<UpdateImage id={props.original._id} />
 					</span>
 				);
 			},
@@ -102,7 +102,7 @@ export default function AllCategories() {
 	];
 
 	let showTable = true;
-	if (!categories.length) {
+	if (!images.length) {
 		showTable = false;
 	}
 
@@ -110,11 +110,11 @@ export default function AllCategories() {
 		<div >
 			<AddItems />
 			<div className="container">
-	      <h3>Category List</h3>
+	      <h3>Images List</h3>
 	      {
 					showTable && (
 						<ReactTable
-							data={categories}
+							data={images}
 							columns={columnsTable}
 							loading={isLoading}
 							defaultPageSize={10}

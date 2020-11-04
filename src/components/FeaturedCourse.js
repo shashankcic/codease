@@ -16,7 +16,7 @@ function Featured({
   aWork
   }) {
   let location = useLocation();
-  if (location.pathname === "/courses" && page === "courses")
+  if (location.pathname === "/modules" && page === "courses")
   {
     return (
       <div className="featured-course course-item">

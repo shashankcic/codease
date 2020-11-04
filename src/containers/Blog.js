@@ -1,6 +1,6 @@
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
-import BlogPost from './BlogPost';
+import BlogPost from '../components/BlogPost';
 
 function Blog({blogs, authors}) {
   const post = blogs.map((blog) =>  <BlogPost key={blog.id} blog={blog} authors={authors} /> );

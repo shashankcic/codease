@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddItems from './AddItems';
+import AddItems from '../components/AddItems';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
 
@@ -39,12 +39,17 @@ export default function AddLearningPaths() {
         <h3>Add New Learning Path</h3>
         <div className="form-group">
           <label>Learning Path Image: </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
+            required
             value={img}
             onChange={onChangeImg}
-          />
+          >
+            <option value="/assets/img/categories/c++.png">C++</option>
+            <option value="/assets/img/categories/java.png">Java</option>
+            <option value="/assets/img/categories/python.png">Python</option>
+            <option value="/assets/img/categories/js.png">JavaScript</option>
+          </select>
         </div>
         <div className="form-group">
           <label>Learning Path Name: </label>
@@ -69,7 +74,7 @@ export default function AddLearningPaths() {
 
         <div className="form-group">
           <button className="btn btn-primary" onClick={onSubmit}>Add Learning Path</button>
-          <button className="btn btn-danger" onClick={() => history.push('/learningPaths')}>Cancel</button>
+          <button className="btn btn-danger" onClick={() => history.push('/db/learningPaths')}>Cancel</button>
         </div>
       </div>
     </div>

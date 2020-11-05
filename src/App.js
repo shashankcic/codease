@@ -17,12 +17,22 @@ const SearchPage = lazy(() => import('./routes/SearchPage'));
 const Category = lazy(() => import('./routes/Category'));
 const Author = lazy(() => import('./routes/Author'));
 const LearningPathPage = lazy(() => import('./routes/LearningPathPage'));
-const { 
-  AddAuthors, AddCategories, AddImages, AddLearningPaths, AddModules,
-  AllAuthors, AllCategories, AllImages, AllLearningPaths, AllModules,
-  EditAuthors, EditCategories, EditImages, EditLearningPaths, EditModules,
-} = lazy(() => import('./db'));
-const {initialBlogs} = lazy(() => import('./data')); 
+const AddAuthors = lazy(() => import('./db/AddAuthors'));
+const AddCategories = lazy(() => import('./db/AddCategories'));
+const AddImages = lazy(() => import('./db/AddImages'));
+const AddLearningPaths = lazy(() => import('./db/AddLearningPaths'));
+const AddModules = lazy(() => import('./db/AddModules'));
+const AllAuthors = lazy(() => import('./db/AllAuthors'));
+const AllCategories = lazy(() => import('./db/AllCategories'));
+const AllImages = lazy(() => import('./db/AllImages'));
+const AllLearningPaths = lazy(() => import('./db/AllLearningPaths'));
+const AllModules = lazy(() => import('./db/AllModules'));
+const EditAuthors = lazy(() => import('./db/EditAuthors'));
+const EditCategories = lazy(() => import('./db/EditCategories'));
+const EditImages = lazy(() => import('./db/EditImages'));
+const EditLearningPaths = lazy(() => import('./db/EditLearningPaths'));
+const EditModules = lazy(() => import('./db/EditModules'));
+const initialBlogs = lazy(() => import('./data/initialBlogs')); 
 
 function App() {
   return (

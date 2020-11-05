@@ -22,8 +22,10 @@ function Course({
             <div className="students">{course.duration} {course.durationUnit}</div>
           </div>
           <div className="course-author">
-            <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>
-            <p>{author.name}, <br /> <span>{author.work}</span></p>
+            <Link to={'/author/' + author._id}>
+              <div className="ca-pic set-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>
+              <p>{author.name}, <br /> <span>{author.work}</span></p>
+            </Link>
           </div>
         </div>
         <div>

@@ -63,12 +63,16 @@ function Author() {
       <Suspense fallback={<div className="loader"></div>}>
         <Search courses={authorModules} authors={authors} />      
       </Suspense>
-      <div className='container'>
-        <h1 className=''>{author.name}</h1>
-        <div className='set-bg w-50 vh-50 mb4' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>
-        <span>{author.work}</span>
-        <h4>About the Author</h4>
-        <p>{author.about}</p>
+      <div className='bg-near-white'>
+        <div className='container tc pa2'>
+          <h1 className=''>{author.name}</h1>
+          <div className='col-lg-4 col-md-4 col-sm-6 center mb2 pb2'>
+            <img src={process.env.PUBLIC_URL + author.img} alt={author.name} className='br-100'/>
+          </div>
+          <span className='ma2 pa2'>{author.work}</span>
+          <h5 className='mt2 pt2'>About the Author</h5>
+          <p className='mb2 pb2'>{author.about}</p>
+        </div>
       </div>
       <div className="course-section spad">
         <div className={"course-warp"}>

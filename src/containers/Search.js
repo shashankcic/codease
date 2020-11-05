@@ -35,7 +35,7 @@ function Search({courses, authors}) {
           </Scroll>
         </Suspense>
       ) : (
-        <h2 className="tc ma4">No matching courses found.</h2>
+        <h2 className="tc ma4">No matching search found.</h2>
       );
     }
   }

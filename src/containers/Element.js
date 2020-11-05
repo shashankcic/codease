@@ -1,6 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import $ from 'jquery';
-const { CircularProgressWithLabel } = lazy(() => import('../components/CircularStatic'));
+const CircularProgressWithLabel = lazy(() => import('../components/CircularStatic'));
 
 class Element extends Component {
   componentDidMount() {

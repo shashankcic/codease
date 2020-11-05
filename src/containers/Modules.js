@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Course from '../components/Course';
-import Featured from '../components/FeaturedCourse';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 import api from '../api';
+const Course = lazy(() => import('../components/Course'));
+const Featured = lazy(() => import('../components/FeaturedCourse'));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,19 +74,19 @@ function Modules(){
     fetchAuthors();
   }, [])  
 
-  const allCourses = (courses.length && authors.length) ? courses.map((course) =>  <Course key={course._id} course={course} authors={authors} />) : "loading";
+  const allCourses = (courses.length && authors.length) ? courses.map((course) =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} /></Suspense>) : "loading";
 
   const beg = courses.filter(course =>  course.categoryName==="Beginner"); 
-  const begCourses = beg.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+  const begCourses = beg.map(course =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} /></Suspense> );
 
   const int = courses.filter(course =>  course.categoryName==="Intermediate");
-  const intCourses = int.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+  const intCourses = int.map(course =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} /></Suspense> );
 
   const adv = courses.filter(course =>  course.categoryName==="Advanced");   
-  const advCourses = adv.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+  const advCourses = adv.map(course =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} /></Suspense> );
 
   const misc = courses.filter(course =>  course.categoryName==="Miscellaneous");   
-  const miscCourses = misc.map(course =>  <Course key={course._id} course={course} authors={authors} /> );
+  const miscCourses = misc.map(course =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} /></Suspense> );
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -96,8 +96,10 @@ function Modules(){
 
   return (
     <section className="course-section spad">
-      <div className="container">        
-        <Featured page="home"/>
+      <div className="container">
+        <Suspense fallback={<div className="loader"></div>}>
+          <Featured page="home"/>
+        </Suspense>        
       </div>
       <div className={classes.root + " course-warp"} style={{width: "100%", margin: "20px auto"}}>
         <Tabs
@@ -141,34 +143,38 @@ function Modules(){
           </div>
         </TabPanel>
         <div className="featured-courses">
-          <Featured
-            page="courses"
-            cImg="/assets/img/courses/js.png"
-            price="0"
-            cName="JavaScript"
-            cLevel="Intermediate"
-            cText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula ultrices sapien eu pulvinar. Sed sit amet euismod libero. Sed cursus dui mattis tincidunt consequat. In eu augue quis velit commodo vulputate. Nam eget est ut purus pulvinar commodo. Aliquam bibendum nisi ut ligula porta, at porttitor ipsum faucibus. Phasellus vitae lorem eget lectus auctor pulvinar ut id augue. Sed gravida, arcu et fringilla semper, nulla neque pellentesque nisl, commodo feugiat felis neque fringilla arcu. Vestibulum ultricies turpis mauris, eu venenatis lectus vehicula hendrerit. Proin vel elit eget justo convallis ornare. Ut a augue commodo, commodo diam et, commodo orci. Pellentesque at nunc nec lorem egestas porttitor rhoncus ut dui. Donec id gravida urna."
-            cTime="2"
-            cTimeUnit="Hours"
-            cClass="offset-lg-6 pl-0"
-            aImg="/assets/img/authors/shashank.jpg"
-            aName="Shashank Singh"
-            aWork="Developer"
-          />
-          <Featured
-            page="courses"
-            cImg="/assets/img/courses/python.png"
-            price="0"
-            cName="Python"
-            cLevel="Beginner"
-            cText="In hac habitasse platea dictumst. Etiam id enim ut magna malesuada porta non quis nunc. Maecenas ante lorem, tempor sed pretium a, pharetra sit amet neque. Sed malesuada, nisl ut dignissim consectetur, velit odio viverra velit, ultrices malesuada ipsum purus ut ex. Donec placerat in arcu at scelerisque. Donec dictum quam nec enim placerat pharetra. Donec mattis rutrum massa. Nulla hendrerit pharetra pulvinar. Curabitur rhoncus est tortor, vitae suscipit metus varius id. Mauris aliquam pretium sem in pretium. Fusce sit amet mattis neque. Nullam tempus dapibus justo quis ultricies."
-            cTime="35"
-            cTimeUnit="Minutes"
-            cClass="pr-0"
-            aImg="/assets/img/authors/devansh.jpg"
-            aName="Devansh Gupta"
-            aWork="Developer"
-          />
+          <Suspense fallback={<div className="loader"></div>}>
+            <Featured
+              page="courses"
+              cImg="/assets/img/courses/js.png"
+              price="0"
+              cName="JavaScript"
+              cLevel="Intermediate"
+              cText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula ultrices sapien eu pulvinar. Sed sit amet euismod libero. Sed cursus dui mattis tincidunt consequat. In eu augue quis velit commodo vulputate. Nam eget est ut purus pulvinar commodo. Aliquam bibendum nisi ut ligula porta, at porttitor ipsum faucibus. Phasellus vitae lorem eget lectus auctor pulvinar ut id augue. Sed gravida, arcu et fringilla semper, nulla neque pellentesque nisl, commodo feugiat felis neque fringilla arcu. Vestibulum ultricies turpis mauris, eu venenatis lectus vehicula hendrerit. Proin vel elit eget justo convallis ornare. Ut a augue commodo, commodo diam et, commodo orci. Pellentesque at nunc nec lorem egestas porttitor rhoncus ut dui. Donec id gravida urna."
+              cTime="2"
+              cTimeUnit="Hours"
+              cClass="offset-lg-6 pl-0"
+              aImg="/assets/img/authors/shashank.jpg"
+              aName="Shashank Singh"
+              aWork="Developer"
+            />
+          </Suspense>
+          <Suspense fallback={<div className="loader"></div>}>
+            <Featured
+              page="courses"
+              cImg="/assets/img/courses/python.png"
+              price="0"
+              cName="Python"
+              cLevel="Beginner"
+              cText="In hac habitasse platea dictumst. Etiam id enim ut magna malesuada porta non quis nunc. Maecenas ante lorem, tempor sed pretium a, pharetra sit amet neque. Sed malesuada, nisl ut dignissim consectetur, velit odio viverra velit, ultrices malesuada ipsum purus ut ex. Donec placerat in arcu at scelerisque. Donec dictum quam nec enim placerat pharetra. Donec mattis rutrum massa. Nulla hendrerit pharetra pulvinar. Curabitur rhoncus est tortor, vitae suscipit metus varius id. Mauris aliquam pretium sem in pretium. Fusce sit amet mattis neque. Nullam tempus dapibus justo quis ultricies."
+              cTime="35"
+              cTimeUnit="Minutes"
+              cClass="pr-0"
+              aImg="/assets/img/authors/devansh.jpg"
+              aName="Devansh Gupta"
+              aWork="Developer"
+            />
+          </Suspense>
         </div>
       </div>
     </section>

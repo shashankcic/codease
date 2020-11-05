@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Course from '../components/Course';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { useParams } from 'react-router-dom';
 import api from '../api';
+const Course = lazy(() => import('../components/Course'));
 
 function RelatedModules() {
   const { id } = useParams();
@@ -42,7 +42,7 @@ function RelatedModules() {
 
   const relatedCourses = (courses.length && course) ? courses.filter(x => (x.learningPathName === course.learningPathName || x.categoryName === 'Beginner') && (x._id !== course._id)) : <div>Loading</div>;
   
-  const allCourses = (relatedCourses.length && authors.length ) ? relatedCourses.map((course) =>  <Course key={course._id} course={course} authors={authors} lgSize={12} mdSize={12} smSize={12} />) : <div>Loading</div>;
+  const allCourses = (relatedCourses.length && authors.length ) ? relatedCourses.map((course) =>  <Suspense fallback={<div className="loader"></div>} key={course._id} ><Course key={course._id} course={course} authors={authors} lgSize={12} mdSize={12} smSize={12} /></Suspense>) : <div>Loading</div>;
   
   return (
     <section className="realated-courses spad">

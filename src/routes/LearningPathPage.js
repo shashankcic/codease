@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import PageInfo from '../components/PageInfo';
-import Search from '../containers/Search';
-import Footer from '../components/Footer';
-import Course from '../components/Course';
 import api from '../api';
+const Header = lazy(() => import('../components/Header'));
+const PageInfo = lazy(() => import('../components/PageInfo'));
+const Search = lazy(() => import('../containers/Search'));
+const Course = lazy(() => import('../components/Course'));
+const Footer = lazy(() => import('../components/Footer'));
 
 export default function Category() {
 	const { name } = useParams();
@@ -44,13 +44,19 @@ export default function Category() {
     fetchAuthors();
 	}, [name]);
 
-	const allModules = (modules.length && authors.length) ? modules.map(module =>  <Course key={module._id} course={module} authors={authors} /> ) : <h2 className='tc w-100'>No modules found</h2>;
+	const allModules = (modules.length && authors.length) ? modules.map(module =>  <Suspense fallback={<div className="loader"></div>} key={module._id} ><Course key={module._id} course={module} authors={authors} /></Suspense> ) : <h2 className='tc w-100'>No modules found</h2>;
 
 	return(
 		<div>
-			<Header />
-			<PageInfo title={'Category/'+ name} bg='/assets/img/page-bg/5.jpg' />
-			<Search courses={modules} authors={authors} />
+      <Suspense fallback={<div className="loader"></div>}>
+				<Header />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+				<PageInfo title={'Category/'+ name} bg='/assets/img/page-bg/5.jpg' />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+				<Search courses={modules} authors={authors} />
+      </Suspense>
 			<div className='container'>
 				<h1 className=''>{name} Courses</h1>
 				<div className='set-bg w-25 center vh-25 mb4' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + learningPath.img})`}}></div>
@@ -64,7 +70,9 @@ export default function Category() {
 					</div>
 				</div>
 			</div>
-			<Footer />
+      <Suspense fallback={<div className="loader"></div>}>
+				<Footer />
+      </Suspense>
 		</div>
 	);
 } 

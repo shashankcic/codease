@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import AddItems from '../components/AddItems';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import api from '../api';
 import { useParams, useHistory } from 'react-router-dom';
+const AddItems = lazy(() => import('../components/AddItems'));
 
 export default function EditCategories() {
 	const { id } = useParams();
@@ -63,7 +63,9 @@ export default function EditCategories() {
 
 	return (
 		<div>
-      <AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+        <AddItems />
+      </Suspense>
       <div style={{marginTop: 10}} className="container">
         <h3>Update Category</h3>
         <div className="form-group">

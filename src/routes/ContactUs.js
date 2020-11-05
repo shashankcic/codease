@@ -1,16 +1,24 @@
-import React from 'react';
-import Header from '../components/Header';
-import PageInfo from '../components/PageInfo';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
+import React, { lazy, Suspense } from 'react';
+const Header = lazy(() => import('../components/Header'));
+const PageInfo = lazy(() => import('../components/PageInfo'));
+const Contact = lazy(() => import('../components/Contact'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function ContactUs() {
   return (
     <div>
-      <Header />
-      <PageInfo title="Contact Us" bg="/assets/img/page-bg/4.jpg" />
-      <Contact />
-      <Footer />
+    	<Suspense fallback={<div className="loader"></div>}>
+      	<Header />
+    	</Suspense>
+    	<Suspense fallback={<div className="loader"></div>}>
+	      <PageInfo title="Contact Us" bg="/assets/img/page-bg/4.jpg" />
+    	</Suspense>
+    	<Suspense fallback={<div className="loader"></div>}>
+  	    <Contact />
+    	</Suspense>
+    	<Suspense fallback={<div className="loader"></div>}>
+    	  <Footer />
+    	</Suspense>
     </div>
   );
 }

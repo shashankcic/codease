@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Pagination from '@material-ui/lab/Pagination';
-import BlogPost from '../components/BlogPost';
+const BlogPost = lazy(() => import('../components/BlogPost'));
 
 function Blog({blogs, authors}) {
-  const post = blogs.map((blog) =>  <BlogPost key={blog.id} blog={blog} authors={authors} /> );
+  const post = blogs.map((blog) =>  <Suspense fallback={<div className="loader"></div>} key={blog._id} ><BlogPost key={blog.id} blog={blog} authors={authors} /></Suspense> );
   return(
     <section className="blog-page spad pb-0">
       <div className="container">

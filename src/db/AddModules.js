@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import AddItems from '../components/AddItems';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+const AddItems = lazy(() => import('../components/AddItems'));
 
 export default function AddModules(props) {
   const [img, setImg] = useState('/assets/img/courses/');
@@ -160,7 +160,9 @@ export default function AddModules(props) {
 
   return (
     <div>
-      <AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+        <AddItems />
+      </Suspense>
       <div style={{marginTop: 10}} className="container">
         <h3>Add New Module</h3>
         <div className="form-group">

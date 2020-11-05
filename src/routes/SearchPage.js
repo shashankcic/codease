@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import PageInfo from '../components/PageInfo';
-import Search from '../containers/Search';
-import Footer from '../components/Footer';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import api from '../api';
+const Header = lazy(() => import('../components/Header'));
+const PageInfo = lazy(() => import('../components/PageInfo'));
+const Search = lazy(() => import('../containers/Search'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function SearchPage() {
   const [modules, setModules] = useState([]);
@@ -30,10 +30,18 @@ function SearchPage() {
   }, []);
   return (
     <div>
-      <Header />
-      <PageInfo title="Search" bg="/assets/img/page-bg/5.jpg" />
-      <Search courses={modules} authors={authors} />
-      <Footer />
+      <Suspense fallback={<div className="loader"></div>}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <PageInfo title="Search" bg="/assets/img/page-bg/5.jpg" />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Search courses={modules} authors={authors} />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

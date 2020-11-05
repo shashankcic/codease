@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import AddItems from '../components/AddItems';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import ReactTable from 'react-table-6';
 import api from '../api';
-
 import 'react-table-6/react-table.css';
+const AddItems = lazy(() => import('../components/AddItems'));
+
 
 function UpdateLearningPath(props) {
 
@@ -103,7 +103,9 @@ export default function AllLearningPaths() {
 
 	return (
 		<div >
-			<AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+				<AddItems />
+      </Suspense>
 			<div className="container">
 	      <h3>Learning Path List</h3>
 	      {

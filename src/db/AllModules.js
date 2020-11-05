@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import AddItems from '../components/AddItems';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import ReactTable from 'react-table-6';
 import api from '../api';
 import draftToHtml from 'draftjs-to-html';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'react-table-6/react-table.css';
+const AddItems = lazy(() => import('../components/AddItems'));
 
 
 export default function AllModules() {
@@ -260,7 +260,9 @@ export default function AllModules() {
 
 	return (
 		<div >
-			<AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+				<AddItems />
+      </Suspense>
 			<div className="container">
 	      <h3>Module List</h3>
 	      {

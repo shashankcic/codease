@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { CircularProgressWithLabel } from '../components/CircularStatic';
+import React, { Component, lazy, Suspense } from 'react';
 import $ from 'jquery';
+const { CircularProgressWithLabel } = lazy(() => import('../components/CircularStatic'));
 
 class Element extends Component {
   componentDidMount() {
@@ -97,16 +97,24 @@ class Element extends Component {
             <h2 className="e-title">Loaders</h2>
             <div className="row">
               <div className="col-lg-3 col-sm-6 cp-item">
-                <CircularProgressWithLabel className="circle-progress" value={75} size={200} thickness={2.5} text="New Students" />
+                <Suspense fallback={<div className="loader"></div>}>
+                  <CircularProgressWithLabel className="circle-progress" value={75} size={200} thickness={2.5} text="New Students" />
+                </Suspense>
               </div>
               <div className="col-lg-3 col-sm-6 cp-item">
-                <CircularProgressWithLabel className="circle-progress" value={83} size={200} thickness={2.5} text="New Teachers" />
+                <Suspense fallback={<div className="loader"></div>}>
+                  <CircularProgressWithLabel className="circle-progress" value={83} size={200} thickness={2.5} text="New Teachers" />
+                </Suspense>
               </div>
               <div className="col-lg-3 col-sm-6 cp-item">
-                <CircularProgressWithLabel className="circle-progress" value={25} size={200} thickness={2.5} text="Creativity "/>
+                <Suspense fallback={<div className="loader"></div>}>
+                  <CircularProgressWithLabel className="circle-progress" value={25} size={200} thickness={2.5} text="Creativity "/>
+                </Suspense>
               </div>
               <div className="col-lg-3 col-sm-6 cp-item">
-                <CircularProgressWithLabel className="circle-progress" value={95} size={200} thickness={2.5} text="Prestige" />
+                <Suspense fallback={<div className="loader"></div>}>
+                  <CircularProgressWithLabel className="circle-progress" value={95} size={200} thickness={2.5} text="Prestige" />
+                </Suspense>
               </div>
             </div>
           </div>

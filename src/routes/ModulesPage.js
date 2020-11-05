@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import PageInfo from '../components/PageInfo';
-import Search from '../containers/Search';
-import Modules from '../containers/Modules';
-import Footer from '../components/Footer';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import api from '../api';
+const Header = lazy(() => import('../components/Header'));
+const PageInfo = lazy(() => import('../components/PageInfo'));
+const Search = lazy(() => import('../containers/Search'));
+const Modules = lazy(() => import('../containers/Modules'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function ModulesPage() {
   const [modules, setModules] = useState([]);
@@ -31,11 +31,21 @@ function ModulesPage() {
   }, []);
   return (
     <div>
-      <Header />
-      <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
-      <Search courses={modules} authors={authors} />
-      <Modules />
-      <Footer /> 
+      <Suspense fallback={<div className="loader"></div>}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <PageInfo title="Courses" bg="/assets/img/page-bg/1.jpg" />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Search courses={modules} authors={authors} />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Modules />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Footer /> 
+      </Suspense>
     </div>
   );
 }

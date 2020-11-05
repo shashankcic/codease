@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import LearningPath from '../components/LearningPath';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import api from '../api';
+const LearningPath = lazy(() => import('../components/LearningPath'));
 
 function LearningPaths() {
   const [learningPaths, setLearningPaths] = useState([]);
@@ -18,7 +18,7 @@ function LearningPaths() {
     fetchLearningPaths();
   }, [])
 
-  const allLearningPaths = learningPaths.map((learningPath) =>  <LearningPath key={learningPath._id} learningPath={learningPath} /> ); 
+  const allLearningPaths = learningPaths.map((learningPath) =>  <Suspense fallback={<div className="loader"></div>} key={learningPath._id} ><LearningPath key={learningPath._id} learningPath={learningPath} /></Suspense> ); 
   return(
     <section className="categories-section spad">
       <div className="container">

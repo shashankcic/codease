@@ -1,5 +1,5 @@
-import React from 'react';
-import SimpleMap from './Map';
+import React, { lazy, Suspense } from 'react';
+const SimpleMap = lazy(() => import('./Map'));
 
 function Contact() {
   return (
@@ -48,7 +48,9 @@ function Contact() {
           </div>
         </div>
         <div>
+        <Suspense fallback={<div className="loader"></div>}>
           <SimpleMap />  
+        </Suspense>
         </div>
       </div>
     </section>

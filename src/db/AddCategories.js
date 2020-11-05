@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import AddItems from '../components/AddItems';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
+const AddItems = lazy(() => import('../components/AddItems'));
 
 export default function AddCategories() {
   const [img, setImg] = useState('/assets/img/categories/');
@@ -58,7 +58,9 @@ export default function AddCategories() {
 
   return (
     <div>
-      <AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+        <AddItems />
+      </Suspense>
       <div style={{marginTop: 10}} className="container">
         <h3>Add New Category</h3>
         <div className="form-group">

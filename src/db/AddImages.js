@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import AddItems from '../components/AddItems';
+import React, { useState, lazy, Suspense } from 'react';
 import api from '../api';
 import { useHistory } from 'react-router-dom';
+const AddItems = lazy(() => import('../components/AddItems'));
 
 export default function AddImages() {
   const [imgName, setImgName] = useState("");
@@ -40,7 +40,9 @@ export default function AddImages() {
 
   return (
     <div>
-      <AddItems />
+      <Suspense fallback={<div className="loader"></div>}>
+        <AddItems />
+      </Suspense>
       <div style={{marginTop: 10}} className="container">
         <h3>Add New Image</h3>
         <div className="form-group">

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
-import SearchList from '../components/SearchList';
-import Scroll from '../components/Scroll';
+const SearchList = lazy(() => import('../components/SearchList'));
+const Scroll = lazy(() => import('../components/Scroll'));
 
 function Search({courses, authors}) {
   let location = useLocation();
@@ -12,7 +12,7 @@ function Search({courses, authors}) {
     class1="ss-other-page";
     class2="col-lg-10 offset-lg-1";
   }
-  
+
   const [searchField, setSearchField] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const filteredCourses = courses.filter(course => {
@@ -29,9 +29,11 @@ function Search({courses, authors}) {
     if(showSearch) {
       return (filteredCourses.length > 0) ? 
       (
-        <Scroll>
-          <SearchList filteredCourses={filteredCourses} authors={authors}/>
-        </Scroll>
+        <Suspense fallback={<div className="loader"></div>}>
+          <Scroll>
+            <SearchList filteredCourses={filteredCourses} authors={authors}/>
+          </Scroll>
+        </Suspense>
       ) : (
         <h2 className="tc ma4">No matching courses found.</h2>
       );

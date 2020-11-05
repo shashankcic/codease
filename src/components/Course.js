@@ -27,8 +27,8 @@ function Course({
           </div>
         </div>
         <div>
-          <Link to={'/module/' + course.learningPathName + '/' + course.categoryName + '/' + course._id} className="f6 link dim ph3 pv2 tc mb2 dib white w-50 white items-center hover-bg-grey bg-primary">Start</Link>
-          <Link to={'/module/' + course._id} className="f6 link dim ph3 pv2 mb2 tc dib white w-50 white items-center hover-bg-grey bg-primary">Details</Link>
+          <Link to={'/module/' + course.learningPathName + '/' + course.categoryName + '/' + course._id} className="f6 br1 link dim ph3 pv2 tc mb2 dib white w-50 white items-center hover-bg-grey bg-secondary">Start</Link>
+          <Link to={'/module/' + course._id} className="f6 link dim ph3 br1 pv2 mb2 tc dib white w-50 white items-center hover-bg-grey bg-secondary">Details</Link>
         </div>
       </div>
     </div>

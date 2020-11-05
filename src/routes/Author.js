@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import PageInfo from '../components/PageInfo';
-import Search from '../containers/Search';
-import Course from '../components/Course';
-import Footer from '../components/Footer';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api';
+const Header = lazy(() => import('../components/Header'));
+const PageInfo = lazy(() => import('../components/PageInfo'));
+const Search = lazy(() => import('../containers/Search'));
+const Course = lazy(() => import('../components/Course'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function Author() {
   const { id } = useParams();
@@ -51,12 +51,18 @@ function Author() {
   //   setAuthorModules(authorModule);
   // }, [authorModule])
 
-  const allModules = (authorModules.length && authors.length ) ? authorModules.map(module =>  <Course key={module._id} course={module} authors={authors} /> ) : <h2 className='tc w-100'>No modules found</h2>;
+  const allModules = (authorModules.length && authors.length ) ? authorModules.map(module =>  <Suspense fallback={<div className="loader"></div>} key={module._id} ><Course key={module._id} course={module} authors={authors} /></Suspense> ) : <h2 className='tc w-100'>No modules found</h2>;
   return (
     <div>
-      <Header />
-      <PageInfo title="Author" bg="/assets/img/page-bg/3.jpg" />
-      <Search courses={authorModules} authors={authors} />
+      <Suspense fallback={<div className="loader"></div>}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <PageInfo title="Author" bg="/assets/img/page-bg/3.jpg" />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Search courses={authorModules} authors={authors} />      
+      </Suspense>
       <div className='container'>
         <h1 className=''>{author.name}</h1>
         <div className='set-bg w-50 vh-50 mb4' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + author.img})`}}></div>
@@ -72,7 +78,9 @@ function Author() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Suspense fallback={<div className="loader"></div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

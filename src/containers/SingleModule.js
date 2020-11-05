@@ -66,7 +66,7 @@ function SingleModule() {
                   <div className="cm-info">
                     <h6>Reviews</h6>
                     <p>{course.ratingCount} Reviews <span className="rating">
-                      <Rating name="read-only" value={course.stars ? course.stars : 5} readOnly size="small" />
+                      <Rating name="half-rating-read" value={course.stars ? course.stars : 4.7} defaultValue={4.7} precision={0.1} readOnly size="small" />
                     </span></p>
                   </div>
                 </div>

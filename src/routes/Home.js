@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import LearningPaths from '../containers/LearningPaths';
-import Search from '../containers/Search';
-import Modules from '../containers/Modules';
-import Footer from '../components/Footer';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import api from '../api';
+const Header = lazy(() => import('../components/Header'));
+const Hero = lazy(() => import('../components/Hero'));
+const LearningPaths = lazy(() => import('../containers/LearningPaths'));
+const Search = lazy(() => import('../containers/Search'));
+const Modules = lazy(() => import('../containers/Modules'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function Home() {
   const [modules, setModules] = useState([]);
@@ -32,12 +32,24 @@ function Home() {
   }, []);
   return (
     <div>
-      <Header />
-      <Hero />
-      <LearningPaths/>
-      <Search courses={modules} authors={authors} />
-      <Modules />
-      <Footer /> 
+      <Suspense fallback={<div className="loader"></div>}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Search courses={modules} authors={authors} />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <LearningPaths/>
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Modules />
+      </Suspense>
+      <Suspense fallback={<div className="loader"></div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

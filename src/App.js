@@ -58,7 +58,9 @@ function App() {
             </Suspense>
           </Route>
           <Route exact path='/about'>
-            <AboutUs />
+            <Suspense fallback={<div className="loader"></div>}>
+              <AboutUs />
+            </Suspense>
           </Route>
           <Route exact path='/element'>
             <Suspense fallback={<div className="loader"></div>}>

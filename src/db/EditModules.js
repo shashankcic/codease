@@ -59,7 +59,6 @@ export default function EditModules() {
 
   async function onChangeCategoryName(e) {
     setCategoryName(e.target.value);
-    console.log(categoryName);
   }
 
   async function onChangeAuthorName(e) {

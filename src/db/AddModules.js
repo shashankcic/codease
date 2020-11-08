@@ -17,9 +17,9 @@ export default function AddModules(props) {
   const [authorName, setAuthorName] = useState('');
   const [authors, setAuthors] = useState([]);
   const [price, setPrice] = useState(0);
-  const [priceCurrency, setPriceCurrency] = useState('');
+  const [priceCurrency, setPriceCurrency] = useState('INR');
   const [duration, setDuration] = useState(0);
-  const [durationUnit, setDurationUnit] = useState('');
+  const [durationUnit, setDurationUnit] = useState('Mins');
   const ratingCount = 0;
   const stars = 0;
   const [heading, setHeading] = useState('');
@@ -134,6 +134,7 @@ export default function AddModules(props) {
   }
 
   async function onSubmit(e) {
+
     const payload = { 
       img, 
       name, 
@@ -152,6 +153,7 @@ export default function AddModules(props) {
       field, 
       ideLink,
     };
+
     await api.insertModule(payload).then(res => {
       window.alert(`Module added successfully!`);
       history.push('/db/modules');

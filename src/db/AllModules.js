@@ -31,15 +31,16 @@ export default function AllModules() {
 
 	function DeleteModule(props) {
 
-		function deleteModule(e) {
+		async function deleteModule(e) {
 			e.preventDefault();
 			if (
 	    	window.confirm(
 	        `Do you want to delete this module permanently?`,
 	      )
 	    ) {
-	      api.deleteModuleById(props.id)
-	      window.location.reload()
+
+	      await api.deleteModuleById(props.id).then(() => window.location.reload());
+	      
 	    }
 		}
 		return (

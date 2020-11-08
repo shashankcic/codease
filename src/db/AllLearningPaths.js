@@ -26,8 +26,8 @@ function DeleteLearningPath(props) {
         `Do you want to delete this learning path permanently?`,
       )
     ) {
-      api.deleteLearningPathById(props.id)
-      window.location.reload()
+      api.deleteLearningPathById(props.id).then(() => window.location.reload());
+      
     }
 	}
 	return (

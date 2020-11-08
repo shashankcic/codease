@@ -26,8 +26,7 @@ function DeleteAuthor(props) {
         `Do you want to delete this author permanently?`,
       )
     ) {
-      api.deleteAuthorById(props.id)
-      window.location.reload()
+      api.deleteAuthorById(props.id).then(() => window.location.reload())
     }
 	}
 	return (

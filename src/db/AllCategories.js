@@ -26,8 +26,8 @@ function DeleteCategory(props) {
         `Do you want to delete this category permanently?`,
       )
     ) {
-      api.deleteCategoryById(props.id)
-      window.location.reload()
+      api.deleteCategoryById(props.id).then(() => window.location.reload())
+      
     }
 	}
 	return (

@@ -26,8 +26,7 @@ function DeleteImage(props) {
         `Do you want to delete this image permanently?`,
       )
     ) {
-      api.deleteImageById(props.id)
-      window.location.reload()
+      api.deleteImageById(props.id).then(() => window.location.reload())
     }
 	}
 	return (

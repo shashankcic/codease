@@ -1,17 +1,15 @@
 import React, { useState, lazy, Suspense } from 'react';
-import { useLocation } from 'react-router-dom';
 const SearchList = lazy(() => import('../components/SearchList'));
 const Scroll = lazy(() => import('../components/Scroll'));
 
 function Search({courses, authors}) {
-  let location = useLocation();
+  // let location = useLocation();
   let class1="", class2="";
-  if (location.pathname === "/") {
-    class2="col-md-10 offset-md-1";
-  } else {
-    class1="ss-other-page";
-    class2="col-lg-10 offset-lg-1";
-  }
+  // if (location.pathname === "/") {
+  //   class2="col-md-10 offset-md-1";
+  // } else {
+  class1="ss-other-page";
+  class2="col-lg-10 offset-lg-1";
 
   const [searchField, setSearchField] = useState("");
   const [showSearch, setShowSearch] = useState(false);

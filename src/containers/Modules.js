@@ -95,7 +95,7 @@ function Modules(){
   };
 
   return (
-    <section className="course-section spad">
+    <section className="course-section">
       <div className="container">
         <Suspense fallback={<div className="loader"></div>}>
           <Featured page="home"/>

@@ -9,6 +9,16 @@ import Avatar from '@material-ui/core/Avatar';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
+function isValidUrl(string) {
+  try {
+    new URL(string);
+  } catch (_) {
+    return false;  
+  }
+
+  return true;
+}
+
 export default function Module() {
 	const { id, learningPathName, categoryName } = useParams();
 	const [collapsed, setCollapsed] = useState(true);
@@ -112,18 +122,25 @@ export default function Module() {
 	}
 
 	function showRepl() {
-		return <div>
-			<iframe 
-				title='repl'
-				height="600px" width="100%" 
-				src={module.ideLink + '?lite=true'} 
-				scrolling="yes" frameBorder="no" 
-				allowtransparency="true" allowFullScreen={true} 
-				sandbox="allow-forms allow-pointer-lock 
-				allow-popups allow-same-origin 
-				allow-scripts allow-modals allow-top-navigation">
-			</iframe>
-		</div>
+		if (isValidUrl(module.ideLink)) {
+			return <div>
+				<iframe 
+					title='repl'
+					height="600px" width="100%" 
+					src={module.ideLink + '?lite=true'} 
+					scrolling="yes" frameBorder="no" 
+					allowtransparency="true" allowFullScreen={true} 
+					sandbox="allow-forms allow-pointer-lock 
+					allow-popups allow-same-origin 
+					allow-scripts allow-modals allow-top-navigation">
+				</iframe>
+			</div>
+		} else {
+			return <div className='w-50 bg-white pa3 ma3 br3 shadow-3 tc center'>
+				<h1 className='courier'>Repl couldn't load!</h1>
+				<h6 className='i'>You can go and try this on their website yourself <a href="https://repl.it">here</a>.</h6>
+			</div>
+		}
 	}
 
 	function showSider() {

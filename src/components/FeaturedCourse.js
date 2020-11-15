@@ -44,9 +44,8 @@ function Featured({
     );
   } else if (location.pathname === "/" && page === "home") {
     return (
-      <div className="section-title mb-0">
-        <h2>Featured Courses</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+      <div className="tc mb-0">
+        <h1 className='f1 pa3 shadow-4 br3'>Featured Modules</h1>
       </div>
     );
   } else {

@@ -22,9 +22,8 @@ function LearningPaths() {
   return(
     <section className="categories-section spad">
       <div className="container">
-        <div className="section-title">
-          <h2>Our Course Categories</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+        <div className="tc mb5">
+          <h2 className='f1 pa3 shadow-4 br3'>Our Learning Paths</h2>
         </div>
         <div className="row">
           {allLearningPaths}

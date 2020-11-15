@@ -105,35 +105,45 @@ export default function AddModules(props) {
     setAuthorName(e.target.value);
   }
 
-  async function onChangePrice(e) {
-    setPrice((e.target.validity.valid) ? e.target.value : price);
-  }
+  // async function onChangePrice(e) {
+  //   setPrice((e.target.validity.valid) ? e.target.value : price);
+  // }
 
-  async function onChangePriceCurrency(e) {
-    setPriceCurrency(e.target.value);
-  }
+  // async function onChangePriceCurrency(e) {
+  //   setPriceCurrency(e.target.value);
+  // }
 
-  async function onChangeDuration(e) {
-    setDuration((e.target.validity.valid) ? e.target.value : duration);
-  }
+  // async function onChangeDuration(e) {
+  //   setDuration((e.target.validity.valid) ? e.target.value : duration);
+  // }
 
-  async function onChangeDurationUnit(e) {
-    setDurationUnit(e.target.value);
-  }
+  // async function onChangeDurationUnit(e) {
+  //   setDurationUnit(e.target.value);
+  // }
 
   async function onChangeHeading(e) {
     setHeading(e.target.value);
   }
 
-  async function onChangeField(e) {
-    setField(e.target.value);
-  }
+  // async function onChangeField(e) {
+  //   setField(e.target.value);
+  // }
 
   async function onChangeIdeLink(e) {
     setIdeLink(e.target.value);
   }
 
   async function onSubmit(e) {
+
+    if (ideLink === '') {
+      setIdeLink('NA');
+    }
+    
+    setDuration(0);
+    setDurationUnit('Mins');
+    setPrice(0);
+    setPriceCurrency('INR');
+    setField('NA');
 
     const payload = { 
       img, 
@@ -264,6 +274,7 @@ export default function AddModules(props) {
             onChange={onChangeDescription}
           />
         </div>
+        {/*
         <div className="form-group">
           <label>Module Price Currency: </label>
           <select
@@ -317,7 +328,7 @@ export default function AddModules(props) {
             <option value='Hours'>Hours</option>
             <option value='Mins'>Mins</option>
           </select>
-        </div>
+        </div> */}
         <div className="form-group">
           <label>Module Heading: </label>
           <input 
@@ -336,7 +347,7 @@ export default function AddModules(props) {
             wrapperClassName='demo-wrapper'
             editorClassName='demo-editor'
           />
-        </div>
+        </div>{/*
         <div className="form-group">
           <label>Module Field: </label>
           <input 
@@ -346,7 +357,7 @@ export default function AddModules(props) {
             value={field}
             onChange={onChangeField}
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label>Module IDE Link: </label>
           <input 

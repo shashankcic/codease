@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import api from '../api';
+import { Link } from 'react-router-dom'; 
 
 function About() {
+  const [authors, setAuthors] = useState([]);
+
+  useEffect(() => {
+    const fetchAuthors = async () => {
+      await api.getAllAuthors().then(response => {
+        if (response.data.data.length > 0) {
+          setAuthors(response.data.data);
+        }
+      })
+    }
+    fetchAuthors();
+  }, [])
+
   return (
     <section className="about-section container">
       <div className="about-organisation row justify-content-center align-items-center">
@@ -39,66 +54,19 @@ function About() {
           <br />
           <h4>The Team</h4>
         </div>
-        <div className="col-lg-4 col-md-4 col-sm-6 grid-item">
-          <Card>
-            <CardMedia className="col-8 member-img-card">
-              <img src={`${process.env.PUBLIC_URL + '/assets/img/authors/bhanu.jpg'}`} alt="Bhanu Mittal"  className="member-img" />
-            </CardMedia>
-            <CardContent>
-              <h4>Bhanu Mittal</h4>
-              <br />
-              <span>He's the project manager and part time billionaire</span>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-6 grid-item">
-          <Card>
-            <CardMedia className="col-8 member-img-card">
-              <img src={`${process.env.PUBLIC_URL + '/assets/img/authors/devansh.jpg'}`} alt="Devansh Gupta" className="member-img" />
-            </CardMedia>
-            <CardContent>  
-              <h4>Devansh Gupta</h4>
-              <br />
-              <span>He's the tester and part time poor joke maker</span>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-6 grid-item">
-          <Card>
-            <CardMedia className="col-8 member-img-card">
-              <img src={`${process.env.PUBLIC_URL + '/assets/img/authors/kirti.jpg'}`} alt="Kirti Panwar" className="member-img" />
-            </CardMedia>
-            <CardContent>
-              <h4>Kirti Panwar</h4>
-              <br />
-              <span>She's the requirements analyst and part time zombie</span>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-6 grid-item">
-          <Card>
-            <CardMedia className="col-8 member-img-card">
-              <img src={`${process.env.PUBLIC_URL + '/assets/img/authors/aastha.jpg'}`} alt="Aastha Shruti" className="member-img" />
-            </CardMedia>
-            <CardContent>
-              <h4>Aastha Shruti</h4>
-              <br />
-              <span>She's the designer and part time moneymaker</span>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-6 grid-item">
-          <Card>
-            <CardMedia className="col-8 member-img-card">
-              <img src={`${process.env.PUBLIC_URL + '/assets/img/authors/shashank.jpg'}`} alt="Shashank Singh" className="member-img" />
-            </CardMedia>
-            <CardContent>
-              <h4>Shashank Singh</h4>
-              <br />
-              <span>He's the developer and full time nice guy</span>
-            </CardContent>
-          </Card>
-        </div>
+        {authors.map(author => <Link to={'/author/' + author._id} className="col-lg-4 col-md-4 col-sm-6 grid-item">
+            <Card>
+              <CardMedia className="col-8 member-img-card">
+                <img src={`${process.env.PUBLIC_URL + author.img}`} alt="Bhanu Mittal"  className="member-img" />
+              </CardMedia>
+              <CardContent>
+                <h4>{author.name}</h4>
+                <br />
+                <span>{author.about}</span>
+              </CardContent>
+            </Card>
+          </Link>
+        )}
       </div>
       <div className="mission-organisation row justify-content-center align-items-center">
         <div className="col-lg-6 col-md-6 col-sm-12 grid-item">

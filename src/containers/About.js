@@ -28,7 +28,7 @@ function About() {
           </h4>
           <br />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.
+            The organisation is a group of motivated students who want to improve the way how the world learns.  
           </p>
         </div>
       </div>
@@ -38,7 +38,7 @@ function About() {
           <br />
           <h4>Our goals</h4>
           <br />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+          <p>We want to be the best in our field by keeping it simple and helping all in the given field inclusive of all the coding and non-coding people and of all ages.</p>
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12 grid-item">
           <Card>
@@ -81,7 +81,7 @@ function About() {
           <br />
           <h4>Mission and Vision</h4>
           <br />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+          <p>To build a platform which is accessible and affordable to everyone.</p>
         </div>
       </div>
     </section>

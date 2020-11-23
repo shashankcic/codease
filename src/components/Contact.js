@@ -10,7 +10,7 @@ function Contact() {
             <div className="contact-form-warp">
               <div className="section-title text-white text-left">
                 <h2>Get in Touch</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </p>
+                <p>You can get in touch with us here, we'd like to hear your feedback.</p>
               </div>
               <form className="contact-form">
                 <input type="text" placeholder="Your Name" />
@@ -25,7 +25,7 @@ function Contact() {
             <div className="contact-info-area">
               <div className="section-title text-left p-0">
                 <h2>Contact Info</h2>
-                <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendi sse cursus faucibus finibus.</p>
+                <p>This is (not) our contact info, you can directly contact us for anything you need.</p>
               </div>
               <div className="phone-number">
                 <span>Direct Line</span>

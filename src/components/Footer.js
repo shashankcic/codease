@@ -51,14 +51,6 @@ function Footer() {
                 <li><a href="/">Logical Operators</a></li>
               </ul>
             </div>
-            <div className="widget-item">
-              <h4>Newsletter</h4>
-              <form className="footer-newslatter">
-                <input type="email" placeholder="E-mail" />
-                <button className="site-btn">Subscribe</button>
-                <p>*We don’t spam</p>
-              </form>
-            </div>
           </div>
         </div>
       </div>

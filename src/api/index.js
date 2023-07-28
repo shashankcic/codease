@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'https://codease.herokuapp.com/',
+	baseURL: 'https://codease-backend.onrender.com',
 })
 
 export const insertImage = payload => api.post(`/images`, payload);
